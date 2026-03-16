@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0f1117;--sidebar:#080a0e;--surface:#161b27;--surface2:#1c2233;
+  --border:#232a3d;--border2:#2d3654;--text:#e8ecf4;--muted:#5a6680;--muted2:#8892a4;
+  --accent:#6366f1;--green:#10b981;--yellow:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+  --sidebar-w:220px;--hdr-h:60px;
+}
+html,body{
+    height:100%;
+    width:100%;
+}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+
+:host {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #0f1117;
+}
