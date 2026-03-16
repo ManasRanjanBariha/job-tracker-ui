@@ -1,0 +1,13 @@
+.upcoming-list{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
+.up-item{display:flex;gap:12px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;}
+.up-date-box{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:8px;padding:6px 10px;text-align:center;flex-shrink:0;min-width:48px;}
+.up-month{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;color:var(--accent);}
+.up-day{font-size:20px;font-weight:800;line-height:1;color:var(--accent);}
+.up-info{flex:1;}
+.up-role{font-size:12px;font-weight:700;}
+.up-co{font-size:11px;color:var(--muted2);margin-top:1px;}
+.up-type{font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px;background:rgba(245,158,11,.1);color:var(--yellow);border:1px solid rgba(245,158,11,.2);white-space:nowrap;}
+.up-item.offer-item{border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.05);}
+.up-item.offer-item .up-date-box{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);}
+.up-item.offer-item .up-month,.up-item.offer-item .up-day{color:var(--green);}
+.up-item.offer-item .up-type{background:rgba(16,185,129,.1);color:var(--green);border-color:rgba(16,185,129,.25);}

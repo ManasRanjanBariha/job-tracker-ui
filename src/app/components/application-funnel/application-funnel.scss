@@ -1,0 +1,9 @@
+.funnel{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
+.funnel-row{display:flex;flex-direction:column;gap:5px;}
+.funnel-top{display:flex;justify-content:space-between;align-items:center;}
+.funnel-lbl{font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.funnel-meta{display:flex;align-items:center;gap:8px;}
+.funnel-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);}
+.funnel-pct{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 6px;border-radius:4px;background:var(--surface2);color:var(--muted);}
+.f-track{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.f-bar{height:100%;border-radius:4px;animation:grow 1s ease .4s both;}

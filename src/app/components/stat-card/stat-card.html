@@ -1,0 +1,8 @@
+<div class="stat-card" [style.--card-color]="color">
+    <div class="stat-top"><span class="stat-lbl">{{statTopText}}</span><span class="stat-icon">{{statIcon}}</span></div>
+    <div class="stat-num" [style.color]="color">{{statNumText}}</div>
+    <div class="stat-bar">
+        <div class="stat-bar-fill" [style.width.%]="value" [style.background]="color"></div>
+    </div>
+    <div class="stat-foot"><span class="up">↑ {{statFooterText}}</span> this week</div>
+</div>

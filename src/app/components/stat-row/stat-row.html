@@ -1,0 +1,39 @@
+<div class="stats-row" >
+    <div *ngFor="let stat of statCardsValues">
+        <app-stat-card [statTopText]="stat.statTopText" [statIcon]="stat.statIcon" [statNumText]="stat.statNumText"
+        [color]="stat.color" [value]="stat.value" [statFooterNumberText]="stat.statFooterNumberText"
+        [statFooterText]="stat.statFooterText"></app-stat-card>
+    </div>
+    
+</div>
+
+<!-- <div class="stat-card">
+        <div class="stat-top"><span class="stat-lbl">Total Applied</span><span class="stat-icon">📨</span></div>
+        <div class="stat-num" style="color:var(--accent)">24</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:80%;background:var(--accent)"></div></div>
+        <div class="stat-foot"><span class="up">↑ 4</span> this week</div>
+      </div> -->
+<!-- <div class="stat-card">
+        <div class="stat-top"><span class="stat-lbl">Interviews</span><span class="stat-icon">💬</span></div>
+        <div class="stat-num" style="color:var(--yellow)">5</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:50%;background:var(--yellow)"></div></div>
+        <div class="stat-foot"><span class="up">↑ 2</span> new this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-lbl">Offers</span><span class="stat-icon">🎉</span></div>
+        <div class="stat-num" style="color:var(--green)">2</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:20%;background:var(--green)"></div></div>
+        <div class="stat-foot"><span class="up">↑ 1</span> this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-lbl">Response Rate</span><span class="stat-icon">📊</span></div>
+        <div class="stat-num" style="color:#a78bfa">38%</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:38%;background:#a78bfa"></div></div>
+        <div class="stat-foot"><span class="up">↑ 5%</span> vs last month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-lbl">Avg Days/Stage</span><span class="stat-icon">⏱</span></div>
+        <div class="stat-num" style="color:var(--blue)">8.2</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:60%;background:var(--blue)"></div></div>
+        <div class="stat-foot">days to hear back</div>
+      </div> -->

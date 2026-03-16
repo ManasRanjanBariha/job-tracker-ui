@@ -1,0 +1,59 @@
+.chart-wrap {
+  padding: 20px;
+}
+.chart-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 110px;
+  margin-bottom: 10px;
+}
+.bar-group {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+.cbar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  animation: barUp 0.7s ease both;
+  transform-origin: bottom;
+}
+@keyframes barUp {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.chart-labels {
+  display: flex;
+  gap: 6px;
+}
+.clbl {
+  flex: 1;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  color: var(--muted);
+}
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted2);
+}
+.leg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
