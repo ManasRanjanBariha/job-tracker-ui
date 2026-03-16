@@ -1,0 +1,155 @@
+<div class="auth-card-holder">
+    <div class="auth-card">
+        <div class="card-accent-bar"></div>
+
+        <div class="logo-wrap">
+            <div class="logo-icon">J</div>
+            <span class="logo-text">Job<span>Trackr</span></span>
+        </div>
+
+        <div class="tab-row">
+            <button class="tab" [class.active]="activeTab=='login'" id="tab-login" (click)="switchTab('login')">Sign
+                In</button>
+            <button class="tab" [class.active]="activeTab=='register'" id="tab-register"
+                (click)="switchTab('register')">Create Account</button>
+        </div>
+
+        <div class="form-body">
+
+            <!-- ══ LOGIN PANEL ══ -->
+            <div class="form-panel active" [class.active]="activeTab === 'login'" id="panel-login">
+
+                <div class="welcome-info">
+                    <div class="welcome-ico">👋</div>
+                    <div class="welcome-txt"><strong>Welcome back!</strong><br>Track your job applications and land your
+                        dream role.</div>
+                </div>
+
+                <div class="banner banner-error" id="login-err">
+                    <span class="banner-ico">⚠</span> Incorrect email or password. Please try again.
+                </div>
+                <div class="banner banner-success" id="login-ok">
+                    <span class="banner-ico">✓</span> Signed in successfully! Redirecting to dashboard…
+                </div>
+                <div class="banner banner-success" id="forgot-ok">
+                    <span class="banner-ico">✉</span> Password reset link sent — check your inbox.
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Email Address</label>
+                    <input class="field-input" type="email" [(ngModel)]="email" id="l-email" placeholder="you@example.com"
+                        autocomplete="email" />
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Password</label>
+                    <div class="pass-wrap">
+                        <input class="field-input" [type]="showLoginPass ? 'text' : 'password'" [(ngModel)]="password" placeholder="••••••••"
+                            style="padding-right:56px;" />
+                        <button class="pass-toggle" type="button" (click)="showLoginPass = !showLoginPass">
+                            {{ showLoginPass ? 'HIDE' : 'SHOW' }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="forgot-row"><a (click)="doForgot()">Forgot password?</a></div>
+
+                <div class="check-row" (click)="isRemember = !isRemember">
+                    <div class="check-box" [class.checked]="isRemember">
+                        {{ isRemember ? '✓' : '' }}
+                    </div>
+                    <span class="check-label">Keep me signed in for 30 days</span>
+                </div>
+
+                <button class="btn-primary" id="login-btn" (click)="doLogin()">
+                    <span id="login-btn-txt">→ Sign In</span>
+                    <div class="spinner" id="login-spin"></div>
+                </button>
+
+                <p class="switch-txt">No account yet? <a (click)="switchTab('register')">Create one free →</a></p>
+            </div>
+
+            <!-- ══ REGISTER PANEL ══ -->
+            <div class="form-panel" [class.active]="activeTab === 'register'">
+
+                <div class="banner banner-error" id="reg-err">
+                    <span class="banner-ico">⚠</span> <span id="reg-err-msg">Please fill in all required fields.</span>
+                </div>
+                <div class="banner banner-success" id="reg-ok">
+                    <span class="banner-ico">✓</span> Account created! Redirecting to dashboard…
+                </div>
+
+                <div class="field-row">
+                    <div class="field" style="margin-bottom:0">
+                        <label class="field-label">First Name</label>
+                        <input class="field-input" type="text" id="r-fname" placeholder="Manas"
+                            autocomplete="given-name" />
+                    </div>
+                    <div class="field" style="margin-bottom:0">
+                        <label class="field-label">Last Name</label>
+                        <input class="field-input" type="text" id="r-lname" placeholder="Bariha"
+                            autocomplete="family-name" />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Email Address</label>
+                    <input class="field-input" type="email" id="r-email" placeholder="you@example.com"
+                        autocomplete="email" />
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Job Title / Role</label>
+                    <input class="field-input" type="text" id="r-role" placeholder="e.g. Frontend Developer" />
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Password</label>
+                    <div class="pass-wrap">
+                        <input class="field-input" [type]="showRegPass ? 'text' : 'password'"
+                            placeholder="Min 8 characters" style="padding-right:56px;" />
+                        <button class="pass-toggle" type="button" (click)="showRegPass = !showRegPass">
+                            {{ showRegPass ? 'HIDE' : 'SHOW' }}
+                        </button>
+                    </div>
+                    <div class="strength-wrap">
+                        <div class="strength-bar">
+                            <div class="s-seg" id="s1"></div>
+                            <div class="s-seg" id="s2"></div>
+                            <div class="s-seg" id="s3"></div>
+                            <div class="s-seg" id="s4"></div>
+                        </div>
+                        <div class="strength-lbl" id="s-lbl">Enter a password</div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label">Confirm Password</label>
+                    <div class="pass-wrap">
+                        <input class="field-input" [type]="showConfirmPass ? 'text' : 'password'"
+                            placeholder="Re-enter password" style="padding-right:56px;" />
+                        <button class="pass-toggle" type="button" (click)="showConfirmPass = !showConfirmPass">
+                            {{ showConfirmPass ? 'HIDE' : 'SHOW' }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="check-row">
+                    <div class="check-box" id="cb-terms">
+                        {{ isTerms ? '✓' : '' }}
+                    </div>
+                    <span class="check-label">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy
+                            Policy</a></span>
+                </div>
+
+                <button class="btn-primary" id="reg-btn" (click)="doRegister()">
+                    <span id="reg-btn-txt">✦ Create My Account</span>
+                    <div class="spinner" id="reg-spin"></div>
+                </button>
+
+                <p class="switch-txt">Already have an account? <a (click)="switchTab('login')">Sign in →</a></p>
+            </div>
+
+        </div>
+    </div>
+</div>
