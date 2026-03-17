@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '../../service/auth/auth-service';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../service/toast/toast-service';
+import { StorageService } from '../../service/storage/storage-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
@@ -9,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class Login {
   activeTab: 'login' | 'register' = 'login';
+  toastService = inject(ToastService);
+  storageService = inject(StorageService);
+  router = inject(Router);
   banners = {
     loginErr: false,
     loginOk: false,
@@ -52,6 +58,8 @@ showConfirmPass = false;
 
   constructor(private authService: AuthService) {}
 
+  
+
   selectedChips: string[] = [];
 
   switchTab(tab: 'login' | 'register') {
@@ -74,41 +82,27 @@ showConfirmPass = false;
     }
   }
 
-  checkStrength(value: string) {
-
-    let score = 0;
-
-    if (value.length >= 8) score++;
-    if (/[A-Z]/.test(value)) score++;
-    if (/[0-9]/.test(value)) score++;
-    if (/[^A-Za-z0-9]/.test(value)) score++;
-
-    const colors = ['', '#ef4444', '#f59e0b', '#6366f1', '#10b981'];
-    const labels = [
-      'Enter a password',
-      'Weak — too simple',
-      'Fair — add numbers',
-      'Good — almost there',
-      'Strong ✓'
-    ];
-
-    this.passwordStrength.score = score;
-    this.passwordStrength.label = value.length ? labels[score] : labels[0];
-    this.passwordStrength.color = colors[score];
-  }
 
   doLogin() {
     console.log('Attempting login with:', this.login);
     this.hideAll();
 
     if (!this.email || !this.password) {
-      this.banners.loginErr = true;
-      console.log('Login failed: Missing email or password');
+     
+      this.toastService.error('Please fill in all fields.');
       return;
     }
     this.authService.login(this.email, this.password).then(response => {
-      if (response.success) {
+      if (response.user) {
+        this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
+        this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000); // 24 hours
+        this.storageService.set('user', response.user);
         this.banners.loginOk = true;
+        this.router.navigate(['/']);
+
+      }
+      else {
+        this.toastService.error(response.message || 'Login failed.');
       }
     });
   
@@ -126,23 +120,37 @@ showConfirmPass = false;
     const { fname, lname, email, pass, pass2, terms } = this.register;
 
     if (!fname || !lname || !email || !pass || !pass2) {
-      this.banners.regErr = true;
+      this.toastService.error('Please fill in all fields.');
       return;
     }
 
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (!emailOk || pass.length < 8 || pass !== pass2 || !terms) {
-      this.banners.regErr = true;
+    if (!emailOk) {
+      this.toastService.error("Please enter correct email");
       return;
     }
+    if(pass.length < 8 || pass !== pass2)
+    {
+      this.toastService.error("Please enter strong password");
+    }
+    if(!terms)
+    {
+      this.toastService.error("please accept term & condition")
+    }
 
-    this.loading.register = true;
-
-    setTimeout(() => {
-      this.loading.register = false;
-      this.banners.regOk = true;
-    }, 1600);
+    this.authService.register(fname, lname, email, pass).then(response => {
+      if (response.user) {
+        this.toastService.success('Registration successful!');
+        this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
+        this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000);
+        this.storageService.set('user', response.user);
+         this.router.navigate(['/']);
+      } else {
+        this.toastService.error(response.message || 'Registration failed.');
+      }
+    });
+    
   }
 
   doForgot() {

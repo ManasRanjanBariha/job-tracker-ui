@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Topbar } from '../../components/topbar/topbar';
 import { Sidebar } from '../../components/sidebar/sidebar';
 import { StatRow } from '../../components/stat-row/stat-row';
@@ -10,6 +10,8 @@ import {ApplicationFunnel} from '../../components/application-funnel/application
 import { UpcomingInterviewList } from '../../components/upcoming-interview-list/upcoming-interview-list';
 import { GoalCard } from '../../components/goal-card/goal-card';
 import { QuickActionCard } from '../../components/quick-action-card/quick-action-card';
+import { StorageService } from '../../service/storage/storage-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   imports: [
@@ -62,4 +64,21 @@ export class Dashboard {
       date: '2026-02-10',
     },
   ];
+
+  storageService = inject(StorageService);
+  router = inject(Router);
+
+  constructor() {}
+
+  ngOnInit() {
+    const user = this.storageService.get('user');
+    if (!user) {
+      console.log('No user logged in, redirecting to login page.');
+      this.router.navigate(['/auth']);
+    } else {
+      console.log('User logged in:', user);
+    }
+  }
+
+  
 }
