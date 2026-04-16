@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard)
     },
     {
-        path:'auth',
+        path:'',
         loadComponent: () => import('./pages/login/login').then(m => m.Login)
     }
 ];

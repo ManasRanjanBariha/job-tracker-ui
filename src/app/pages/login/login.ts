@@ -58,7 +58,12 @@ showConfirmPass = false;
 
   constructor(private authService: AuthService) {}
 
-  
+  ngOnInit() {
+    const user = this.storageService.get('user');
+    if (user) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   selectedChips: string[] = [];
 
@@ -96,9 +101,9 @@ showConfirmPass = false;
       if (response.user) {
         this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
         this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000); // 24 hours
-        this.storageService.set('user', response.user);
+        this.storageService.setWithExpiry('user', response.user, 86400000);
         this.banners.loginOk = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
 
       }
       else {
@@ -144,8 +149,8 @@ showConfirmPass = false;
         this.toastService.success('Registration successful!');
         this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
         this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000);
-        this.storageService.set('user', response.user);
-         this.router.navigate(['/']);
+        this.storageService.setWithExpiry('user', response.user, 86400000);
+        this.router.navigate(['/dashboard']);
       } else {
         this.toastService.error(response.message || 'Registration failed.');
       }

@@ -88,6 +88,11 @@
   color: var(--yellow);
   border: 1px solid rgba(245, 158, 11, 0.25);
 }
+.stage-pill.interviewed {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--yellow);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
 .stage-pill.offer {
   background: rgba(16, 185, 129, 0.12);
   color: var(--green);

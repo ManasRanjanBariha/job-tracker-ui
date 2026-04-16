@@ -14,11 +14,11 @@
   <app-topbar></app-topbar>
   <div class="content">
 
-    <app-stat-row></app-stat-row>
+    <app-stat-row [totalApplied]="totalApplied" [interviews]="interviews" [offers]="offers" [responseRate]="responseRate" [avgDaysPerStage]="avgDaysPerStage"></app-stat-row>
     <div class="dash-grid">
         <div class="main-col">
             <app-dashboard-card title="📋 Recent Applications" actionText="View All →">
-                <app-application-table [applications]="applications" ></app-application-table>
+                <app-application-table [applications]="applications()"></app-application-table>
              </app-dashboard-card>
              <app-dashboard-card title="📈 Applications Over Time" >
               <app-application-chart></app-application-chart>

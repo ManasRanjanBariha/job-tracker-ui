@@ -28,4 +28,13 @@ export class AuthService {
     });
     return response.json();
   }
+
+  async refreshToken(refreshToken: string) {
+    const response = await fetch(environment.apiUrl + endPoints.REFRESH, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken }),
+    });
+    return response.json();
+  }
 }

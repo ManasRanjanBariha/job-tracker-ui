@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Topbar } from '../../components/topbar/topbar';
 import { Sidebar } from '../../components/sidebar/sidebar';
 import { StatRow } from '../../components/stat-row/stat-row';
@@ -6,12 +6,27 @@ import { DashboardCard } from '../../components/dashboard-card/dashboard-card';
 import { CommonModule } from '@angular/common';
 import { ApplicationTable } from '../../components/application-table/application-table';
 import { ApplicationChart } from '../../components/application-chart/application-chart';
-import {ApplicationFunnel} from '../../components/application-funnel/application-funnel';
+import { ApplicationFunnel } from '../../components/application-funnel/application-funnel';
 import { UpcomingInterviewList } from '../../components/upcoming-interview-list/upcoming-interview-list';
 import { GoalCard } from '../../components/goal-card/goal-card';
 import { QuickActionCard } from '../../components/quick-action-card/quick-action-card';
 import { StorageService } from '../../service/storage/storage-service';
 import { Router } from '@angular/router';
+import { DashboardService } from '../../service/dashboard/dashboard-service';
+import { ErrorHandlerService } from '../../service/error-handler/error-handler.service';
+
+interface DashboardResponse {
+  dashboardData: {
+    overview: {
+      totalApplied: number;
+      interviews: number;
+      offers: number;
+      responseRate: string;
+      avgDaysPerStage: number;
+    };
+  };
+}
+
 @Component({
   selector: 'app-dashboard',
   imports: [
@@ -26,59 +41,107 @@ import { Router } from '@angular/router';
     UpcomingInterviewList,
     GoalCard,
     UpcomingInterviewList,
-    QuickActionCard
+    QuickActionCard,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard {
-  applications = [
-    {
-      company: 'Google',
-      position: 'Software Engineer',
-      status: 'Applied',
-      date: '2026-03-01',
-    },
-    {
-      company: 'Amazon',
-      position: 'Backend Developer',
-      status: 'Interviewing',
-      date: '2026-02-25',
-    },
-    {
-      company: 'Microsoft',
-      position: 'Full Stack Developer',
-      status: 'Offer Received',
-      date: '2026-02-20',
-    },
-    {
-      company: 'Facebook',
-      position: 'Data Scientist',
-      status: 'Rejected',
-      date: '2026-02-15',
-    },
-    {
-      company: 'Apple',
-      position: 'iOS Developer',
-      status: 'Applied',
-      date: '2026-02-10',
-    },
-  ];
+export class Dashboard implements OnInit {
+  applications = signal<any[]>([]);
+  dashboardData: DashboardResponse | null = null;
+  totalApplied = 0;
+  interviews = 0;
+  offers = 0;
+  responseRate = '0%';
+  avgDaysPerStage = 0;
+  private isInitialized = false;
+
+  updateStats() {}
 
   storageService = inject(StorageService);
   router = inject(Router);
+  dashboardService = inject(DashboardService);
+  errorHandler = inject(ErrorHandlerService);
 
   constructor() {}
 
   ngOnInit() {
+    if (this.isInitialized) {
+      return; // Prevent duplicate initialization
+    }
+    this.isInitialized = true;
+
     const user = this.storageService.get('user');
     if (!user) {
       console.log('No user logged in, redirecting to login page.');
       this.router.navigate(['/auth']);
     } else {
-      console.log('User logged in:', user);
+      this.getDashboardStats();
     }
   }
 
-  
+  // async getDashboardStats() {
+  //   try {
+  //     const dashboardData: any =
+  //       await this.dashboardService.getDashboardStats();
+  //     console.log('Dashboard Stats:', dashboardData);
+  //     this.dashboardData = dashboardData;
+  //     // Commenting out stats update for now since API response structure is still being finalized
+  //     // this.updateStatsFromData(dashboardData.dashboardData.overview);
+  //     this.updateRecentApplication(dashboardData.dashboardData);
+  //   } catch (error: any) {
+  //     if (this.errorHandler.handleUnauthorizedError(error)) {
+  //       return;
+  //     }
+  //     console.error('Error fetching dashboard stats:', error);
+  //   }
+  // }
+
+ getDashboardStats() {
+  this.dashboardService.getDashboardStats().subscribe({
+    next: (dashboardData: any) => {
+      console.log('Dashboard Stats:', dashboardData);
+      this.dashboardData = dashboardData;
+      this.updateRecentApplication(dashboardData.dashboardData);
+    },
+    error: (error: any) => {
+      if (this.errorHandler.handleUnauthorizedError(error)) return;
+      console.error(error);
+    }
+  });
+}
+
+  updateStatsFromData(data: any) {
+    console.log('Updating stats with data:', data);
+    this.totalApplied = data.totalApplications?.totalApplications || 0;
+
+    // Getting interviews, offers, response rate, and avg days per stage from the overview data
+    let applicationsByStage = data.applicationsByStage || {};
+    console.log('Type of applicationsByStage:', typeof applicationsByStage, 'Value:', applicationsByStage);
+    
+    for (let appDetail of Object.values(applicationsByStage)) {
+      const stage = appDetail as { stage: string; count: number };
+      console.log(stage, "Stage data", applicationsByStage)
+      
+      if (stage.stage.toLowerCase().includes('interview')) {
+        this.interviews = stage.count;
+      }
+      else if (stage.stage.toLowerCase().includes('offer')) {
+        this.offers = stage.count;
+      }
+    }
+    console.log('Updated stats:', {
+      totalApplied: this.totalApplied,
+      interviews: this.interviews,
+      offers: this.offers,
+      responseRate: this.responseRate,
+      avgDaysPerStage: this.avgDaysPerStage
+    });
+  }
+
+  // UpdateRecentApplication
+  updateRecentApplication(data:any) {
+    this.applications.set([...(data.recentApplications || [])]);
+    console.log('Updated recent applications:', this.applications());
+  }
 }
