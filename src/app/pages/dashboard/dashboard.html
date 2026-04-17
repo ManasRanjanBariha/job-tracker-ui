@@ -24,7 +24,7 @@
               <app-application-chart [last7MonthsData]="last7Months()"></app-application-chart>
              </app-dashboard-card>
              <app-dashboard-card title="🔽 Application Funnel" actionText="Full Analytics →">
-              <app-application-funnel last7MonthsData="last7Months()"></app-application-funnel>
+              <app-application-funnel [funnelData]="funnelData()"></app-application-funnel>
 
              </app-dashboard-card>
         </div>

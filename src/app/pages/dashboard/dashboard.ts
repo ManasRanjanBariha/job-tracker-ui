@@ -56,6 +56,7 @@ export class Dashboard implements OnInit {
   rejected = 0;
   avgDaysPerStage = 0;
   last7Months = signal<any[]>([]);
+  funnelData = signal<any>(null);
   private isInitialized = false;
 
   updateStats() {}
@@ -116,7 +117,18 @@ export class Dashboard implements OnInit {
     }
   });
 }
-
+  updateFunnelData() {
+    // For now, we'll just pass the same last 7 months data to the funnel component
+    let funnelData = {
+      totalApplied: this.totalApplied,
+      interviews: this.interviews,
+      offers: this.offers,
+      rejected: this.rejected,
+      ghosted: this.totalApplied - (this.interviews + this.offers + this.rejected)
+    };
+    this.funnelData.set(funnelData);
+    // console.log('Funnel data set to:', this.funnelData());
+  }
   updateStatsFromData(data: any) {
     // console.log('Updating stats with data:', data);
     this.totalApplied = data.totalApplications?.totalApplications || 0;
@@ -150,19 +162,21 @@ export class Dashboard implements OnInit {
       const responseRatePercentage = (applicationsWithResponse / this.totalApplied) * 100;
       this.responseRate = responseRatePercentage.toFixed(2) + '%';
     }
+    // updating funnel data after stats are updated
+    this.updateFunnelData();
     
-    console.log('Updated stats:', {
-      totalApplied: this.totalApplied,
-      interviews: this.interviews,
-      offers: this.offers,
-      responseRate: this.responseRate,
-      avgDaysPerStage: this.avgDaysPerStage
-    });
+    // console.log('Updated stats:', {
+    //   totalApplied: this.totalApplied,
+    //   interviews: this.interviews,
+    //   offers: this.offers,
+    //   responseRate: this.responseRate,
+    //   avgDaysPerStage: this.avgDaysPerStage
+    // });
   }
 
   // UpdateRecentApplication
   updateRecentApplication(data:any) {
     this.applications.set([...(data.recentApplications || [])]);
-    console.log('Updated recent applications:', this.applications());
+    // console.log('Updated recent applications:', this.applications());
   }
 }

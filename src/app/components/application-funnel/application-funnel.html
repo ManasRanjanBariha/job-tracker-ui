@@ -1,7 +1,7 @@
 <div class="funnel">
     <div class="funnel-row">
         <div class="funnel-top"><span class="funnel-lbl"><span style="color:var(--blue)">●</span> Applied</span>
-            <div class="funnel-meta"><span class="funnel-count">24 apps</span><span class="funnel-pct">100%</span></div>
+            <div class="funnel-meta"><span class="funnel-count">{{ funnelData?.totalApplied }} apps</span><span class="funnel-pct">100%</span></div>
         </div>
         <div class="f-track">
             <div class="f-bar" style="width:100%;background:var(--blue)"></div>
@@ -9,34 +9,34 @@
     </div>
     <div class="funnel-row">
         <div class="funnel-top"><span class="funnel-lbl"><span style="color:var(--yellow)">●</span> Interview</span>
-            <div class="funnel-meta"><span class="funnel-count">9 apps</span><span class="funnel-pct">37%</span></div>
+            <div class="funnel-meta"><span class="funnel-count">{{ funnelData?.interviews }} apps</span><span class="funnel-pct">{{ calculatePercentage(funnelData?.interviews, funnelData?.totalApplied) }}</span></div>
         </div>
         <div class="f-track">
-            <div class="f-bar" style="width:37%;background:var(--yellow)"></div>
+            <div class="f-bar" [ngStyle]="{'width': calculatePercentage(funnelData?.interviews, funnelData?.totalApplied)}" style="background:var(--yellow)"></div>
         </div>
     </div>
     <div class="funnel-row">
         <div class="funnel-top"><span class="funnel-lbl"><span style="color:var(--green)">●</span> Offer</span>
-            <div class="funnel-meta"><span class="funnel-count">2 apps</span><span class="funnel-pct">8%</span></div>
+            <div class="funnel-meta"><span class="funnel-count">{{ funnelData?.offers }} apps</span><span class="funnel-pct">{{ calculatePercentage(funnelData?.offers, funnelData?.totalApplied) }}</span></div>
         </div>
         <div class="f-track">
-            <div class="f-bar" style="width:8%;background:var(--green)"></div>
+            <div class="f-bar" [ngStyle]="{'width': calculatePercentage(funnelData?.offers, funnelData?.totalApplied)}" style="background:var(--green)"></div>
         </div>
     </div>
     <div class="funnel-row">
         <div class="funnel-top"><span class="funnel-lbl"><span style="color:var(--red)">●</span> Rejected</span>
-            <div class="funnel-meta"><span class="funnel-count">8 apps</span><span class="funnel-pct">33%</span></div>
+            <div class="funnel-meta"><span class="funnel-count">{{ funnelData?.rejected }} apps</span><span class="funnel-pct">{{ calculatePercentage(funnelData?.rejected, funnelData?.totalApplied) }}</span></div>
         </div>
         <div class="f-track">
-            <div class="f-bar" style="width:33%;background:var(--red)"></div>
+            <div class="f-bar" [ngStyle]="{'width': calculatePercentage(funnelData?.rejected, funnelData?.totalApplied)}" style="background:var(--red)"></div>
         </div>
     </div>
     <div class="funnel-row">
         <div class="funnel-top"><span class="funnel-lbl"><span style="color:var(--muted)">●</span> Ghosted</span>
-            <div class="funnel-meta"><span class="funnel-count">5 apps</span><span class="funnel-pct">21%</span></div>
+            <div class="funnel-meta"><span class="funnel-count">{{ funnelData?.ghosted }} apps</span><span class="funnel-pct">{{ calculatePercentage(funnelData?.ghosted, funnelData?.totalApplied) }}</span></div>
         </div>
         <div class="f-track">
-            <div class="f-bar" style="width:21%;background:var(--muted)"></div>
+            <div class="f-bar" [ngStyle]="{'width': calculatePercentage(funnelData?.ghosted, funnelData?.totalApplied)}" style="background:var(--muted)"></div>
         </div>
     </div>
 </div>

@@ -12,11 +12,11 @@ export class ApplicationChart {
   
   @Input() 
   set last7MonthsData(value: any[]) {
-    console.log('Application chart SETTER called with:', value);
+    // console.log('Application chart SETTER called with:', value);
     const mergedData = this.mergeMonthsWithData(value || []);
-    console.log('Merged data:', mergedData);
+    // console.log('Merged data:', mergedData);
     this.chartData.set(mergedData);
-    console.log('Chart data after setting:', this.chartData());
+    // console.log('Chart data after setting:', this.chartData());
   }
 
   mergeMonthsWithData(incomingData: any[]): any[] {

@@ -14,7 +14,7 @@ export class ApplicationTable {
 
   @Input() 
   set applications(value: any[]) {
-    console.log('SETTER called with:', value);
+    // console.log('SETTER called with:', value);
     this._applications = value;
   }
 
