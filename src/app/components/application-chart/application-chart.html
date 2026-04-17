@@ -1,38 +1,17 @@
 <div class="chart-wrap">
-    <div class="chart-area">
-        <div class="bar-group">
-            <div class="cbar" style="height:35%;background:var(--accent);animation-delay:.05s"></div>
-            <div class="cbar" style="height:18%;background:var(--yellow);animation-delay:.08s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:55%;background:var(--accent);animation-delay:.1s"></div>
-            <div class="cbar" style="height:28%;background:var(--yellow);animation-delay:.13s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:30%;background:var(--accent);animation-delay:.15s"></div>
-            <div class="cbar" style="height:14%;background:var(--yellow);animation-delay:.18s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:72%;background:var(--accent);animation-delay:.2s"></div>
-            <div class="cbar" style="height:40%;background:var(--yellow);animation-delay:.23s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:45%;background:var(--accent);animation-delay:.25s"></div>
-            <div class="cbar" style="height:55%;background:var(--yellow);animation-delay:.28s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:85%;background:var(--accent);animation-delay:.3s"></div>
-            <div class="cbar" style="height:48%;background:var(--yellow);animation-delay:.33s"></div>
-        </div>
-        <div class="bar-group">
-            <div class="cbar" style="height:62%;background:var(--accent);animation-delay:.35s"></div>
-            <div class="cbar" style="height:36%;background:var(--yellow);animation-delay:.38s"></div>
+    <div class="chart-area" *ngIf="chartData().length > 0; else noData">
+        <div class="bar-group" *ngFor="let data of chartData(); let i = index">
+            <div class="cbar" [ngStyle]="{'height.px': getBarHeight(data.jobs_applied, getMaxApplications())}" style="background:var(--accent);" [style.animation-delay]="(i * 0.05 + 0.05) + 's'"></div>
+            <div class="cbar" [ngStyle]="{'height.px': getBarHeight(data.interviews_attended, getMaxInterviews())}" style="background:var(--yellow);" [style.animation-delay]="(i * 0.05 + 0.08) + 's'"></div>
         </div>
     </div>
+    <ng-template #noData>
+        <div class="chart-area" style="justify-content: center; align-items: center;">
+            <p style="color: var(--muted);">No data available</p>
+        </div>
+    </ng-template>
     <div class="chart-labels">
-        <span class="clbl">Sep</span><span class="clbl">Oct</span><span class="clbl">Nov</span><span
-            class="clbl">Dec</span><span class="clbl">Jan</span><span class="clbl">Feb</span><span
-            class="clbl">Mar</span>
+        <span class="clbl" *ngFor="let data of chartData()">{{ data.month }}</span>
     </div>
     <div class="chart-legend">
         <div class="leg-item">

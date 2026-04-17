@@ -21,10 +21,10 @@
                 <app-application-table [applications]="applications()"></app-application-table>
              </app-dashboard-card>
              <app-dashboard-card title="📈 Applications Over Time" >
-              <app-application-chart></app-application-chart>
+              <app-application-chart [last7MonthsData]="last7Months()"></app-application-chart>
              </app-dashboard-card>
              <app-dashboard-card title="🔽 Application Funnel" actionText="Full Analytics →">
-              <app-application-funnel></app-application-funnel>
+              <app-application-funnel last7MonthsData="last7Months()"></app-application-funnel>
 
              </app-dashboard-card>
         </div>

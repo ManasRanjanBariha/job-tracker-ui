@@ -55,6 +55,7 @@ export class Dashboard implements OnInit {
   responseRate = '0%';
   rejected = 0;
   avgDaysPerStage = 0;
+  last7Months = signal<any[]>([]);
   private isInitialized = false;
 
   updateStats() {}
@@ -104,7 +105,10 @@ export class Dashboard implements OnInit {
       console.log('Dashboard Stats:', dashboardData);
       this.dashboardData = dashboardData;
       this.updateStatsFromData(dashboardData.dashboardData.overview);
+      this.last7Months.set(dashboardData.dashboardData.lastSevenMonthsData || []);
       this.updateRecentApplication(dashboardData.dashboardData);
+      console.log('Last 7 months set to:', this.last7Months());
+      
     },
     error: (error: any) => {
       if (this.errorHandler.handleUnauthorizedError(error)) return;
