@@ -53,6 +53,7 @@ export class Dashboard implements OnInit {
   interviews = 0;
   offers = 0;
   responseRate = '0%';
+  rejected = 0;
   avgDaysPerStage = 0;
   private isInitialized = false;
 
@@ -102,6 +103,7 @@ export class Dashboard implements OnInit {
     next: (dashboardData: any) => {
       console.log('Dashboard Stats:', dashboardData);
       this.dashboardData = dashboardData;
+      this.updateStatsFromData(dashboardData.dashboardData.overview);
       this.updateRecentApplication(dashboardData.dashboardData);
     },
     error: (error: any) => {
@@ -112,24 +114,39 @@ export class Dashboard implements OnInit {
 }
 
   updateStatsFromData(data: any) {
-    console.log('Updating stats with data:', data);
+    // console.log('Updating stats with data:', data);
     this.totalApplied = data.totalApplications?.totalApplications || 0;
 
     // Getting interviews, offers, response rate, and avg days per stage from the overview data
     let applicationsByStage = data.applicationsByStage || {};
-    console.log('Type of applicationsByStage:', typeof applicationsByStage, 'Value:', applicationsByStage);
+    // console.log('Type of applicationsByStage:', typeof applicationsByStage, 'Value:', applicationsByStage);
+    
+    let applicationsWithResponse = 0;
     
     for (let appDetail of Object.values(applicationsByStage)) {
       const stage = appDetail as { stage: string; count: number };
-      console.log(stage, "Stage data", applicationsByStage)
+      // console.log(stage, "Stage data", applicationsByStage)
       
       if (stage.stage.toLowerCase().includes('interview')) {
-        this.interviews = stage.count;
+        this.interviews += stage.count;
+        applicationsWithResponse += stage.count;
       }
       else if (stage.stage.toLowerCase().includes('offer')) {
-        this.offers = stage.count;
+        this.offers += stage.count;
+        applicationsWithResponse += stage.count;
+      }
+      else if (stage.stage.toLowerCase().includes('rejected')) {
+        this.rejected += stage.count;
+        applicationsWithResponse += stage.count;
       }
     }
+    
+    // Calculate response rate percentage
+    if (this.totalApplied > 0) {
+      const responseRatePercentage = (applicationsWithResponse / this.totalApplied) * 100;
+      this.responseRate = responseRatePercentage.toFixed(2) + '%';
+    }
+    
     console.log('Updated stats:', {
       totalApplied: this.totalApplied,
       interviews: this.interviews,

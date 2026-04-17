@@ -49,7 +49,7 @@ export class StatRow implements OnChanges {
       {
         statTopText: 'Response Rate',
         statIcon: '📊',
-        statNumText: this.responseRate + '%',
+        statNumText: this.responseRate || '0%',
         color: '#a78bfa',
         value: 38,
         statFooterNumberText: '5%',

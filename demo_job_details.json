@@ -1,0 +1,202 @@
+[
+  {
+    "company": "Google",
+    "role": "Frontend Engineer",
+    "stage": "Applied",
+    "salary": 1800000,
+    "appliedDate": "2026-03-12T10:00:00Z",
+    "interviewDate": null,
+    "note": "Applied through referral from LinkedIn contact",
+    "jobUrl": "https://careers.google.com/jobs/frontend-engineer"
+  },
+  {
+    "company": "Microsoft",
+    "role": "Software Engineer",
+    "stage": "Interview",
+    "salary": 2000000,
+    "appliedDate": "2026-03-10T09:00:00Z",
+    "interviewDate": "2026-03-20T11:00:00Z",
+    "note": "HR round completed",
+    "jobUrl": "https://careers.microsoft.com/jobs/software-engineer"
+  },
+  {
+    "company": "Amazon",
+    "role": "Frontend Developer",
+    "stage": "Applied",
+    "salary": 1700000,
+    "appliedDate": "2026-03-11T08:30:00Z",
+    "interviewDate": null,
+    "note": "Applied via careers page",
+    "jobUrl": "https://amazon.jobs/frontend-developer"
+  },
+  {
+    "company": "Meta",
+    "role": "UI Engineer",
+    "stage": "Rejected",
+    "salary": 2100000,
+    "appliedDate": "2026-03-05T12:00:00Z",
+    "interviewDate": "2026-03-15T14:00:00Z",
+    "note": "Did not clear technical round",
+    "jobUrl": "https://careers.meta.com/ui-engineer"
+  },
+  {
+    "company": "Netflix",
+    "role": "Frontend Engineer",
+    "stage": "Offer",
+    "salary": 2500000,
+    "appliedDate": "2026-02-28T10:15:00Z",
+    "interviewDate": "2026-03-18T16:00:00Z",
+    "note": "Offer received, negotiating",
+    "jobUrl": "https://jobs.netflix.com/frontend-engineer"
+  },
+  {
+    "company": "Adobe",
+    "role": "Frontend Developer",
+    "stage": "Interview",
+    "salary": 1900000,
+    "appliedDate": "2026-03-09T07:45:00Z",
+    "interviewDate": "2026-03-22T13:00:00Z",
+    "note": "Technical interview scheduled",
+    "jobUrl": "https://adobe.wd5.myworkdayjobs.com/frontend-developer"
+  },
+  {
+    "company": "Flipkart",
+    "role": "UI Developer",
+    "stage": "Applied",
+    "salary": 1600000,
+    "appliedDate": "2026-03-13T11:20:00Z",
+    "interviewDate": null,
+    "note": "Applied through referral",
+    "jobUrl": "https://careers.flipkart.com/ui-developer"
+  },
+  {
+    "company": "Swiggy",
+    "role": "Frontend Engineer",
+    "stage": "Interview",
+    "salary": 1500000,
+    "appliedDate": "2026-03-08T10:10:00Z",
+    "interviewDate": "2026-03-21T15:30:00Z",
+    "note": "Coding round pending",
+    "jobUrl": "https://careers.swiggy.com/frontend-engineer"
+  },
+  {
+    "company": "Zomato",
+    "role": "Frontend Developer",
+    "stage": "Applied",
+    "salary": 1400000,
+    "appliedDate": "2026-03-07T09:30:00Z",
+    "interviewDate": null,
+    "note": "Applied via LinkedIn",
+    "jobUrl": "https://zomato.com/careers/frontend-developer"
+  },
+  {
+    "company": "Paytm",
+    "role": "UI Engineer",
+    "stage": "Rejected",
+    "salary": 1300000,
+    "appliedDate": "2026-03-04T08:00:00Z",
+    "interviewDate": "2026-03-14T12:30:00Z",
+    "note": "Rejected after HR round",
+    "jobUrl": "https://paytm.com/careers/ui-engineer"
+  },
+  {
+    "company": "Razorpay",
+    "role": "Frontend Engineer",
+    "stage": "Offer",
+    "salary": 1800000,
+    "appliedDate": "2026-03-02T10:50:00Z",
+    "interviewDate": "2026-03-19T11:45:00Z",
+    "note": "Offer accepted",
+    "jobUrl": "https://razorpay.com/jobs/frontend-engineer"
+  },
+  {
+    "company": "Infosys",
+    "role": "Frontend Developer",
+    "stage": "Applied",
+    "salary": 900000,
+    "appliedDate": "2026-03-06T07:30:00Z",
+    "interviewDate": null,
+    "note": "Campus application",
+    "jobUrl": "https://infosys.com/careers/frontend-developer"
+  },
+  {
+    "company": "TCS",
+    "role": "Software Engineer",
+    "stage": "Interview",
+    "salary": 800000,
+    "appliedDate": "2026-03-01T09:10:00Z",
+    "interviewDate": "2026-03-23T10:00:00Z",
+    "note": "Technical round scheduled",
+    "jobUrl": "https://tcs.com/careers/software-engineer"
+  },
+  {
+    "company": "Wipro",
+    "role": "Frontend Engineer",
+    "stage": "Applied",
+    "salary": 850000,
+    "appliedDate": "2026-03-03T08:20:00Z",
+    "interviewDate": null,
+    "note": "Applied via portal",
+    "jobUrl": "https://wipro.com/careers/frontend-engineer"
+  },
+  {
+    "company": "Accenture",
+    "role": "UI Developer",
+    "stage": "Interview",
+    "salary": 1200000,
+    "appliedDate": "2026-03-05T11:00:00Z",
+    "interviewDate": "2026-03-24T14:30:00Z",
+    "note": "Assessment cleared",
+    "jobUrl": "https://accenture.com/careers/ui-developer"
+  },
+  {
+    "company": "Zoho",
+    "role": "Frontend Developer",
+    "stage": "Offer",
+    "salary": 1100000,
+    "appliedDate": "2026-02-27T10:40:00Z",
+    "interviewDate": "2026-03-17T09:00:00Z",
+    "note": "Offer received",
+    "jobUrl": "https://zoho.com/careers/frontend-developer"
+  },
+  {
+    "company": "Freshworks",
+    "role": "Frontend Engineer",
+    "stage": "Applied",
+    "salary": 1400000,
+    "appliedDate": "2026-03-12T06:30:00Z",
+    "interviewDate": null,
+    "note": "Applied through careers site",
+    "jobUrl": "https://freshworks.com/careers/frontend-engineer"
+  },
+  {
+    "company": "CRED",
+    "role": "UI Engineer",
+    "stage": "Interview",
+    "salary": 1700000,
+    "appliedDate": "2026-03-09T10:25:00Z",
+    "interviewDate": "2026-03-25T13:15:00Z",
+    "note": "Interview scheduled",
+    "jobUrl": "https://cred.club/careers/ui-engineer"
+  },
+  {
+    "company": "Ola",
+    "role": "Frontend Developer",
+    "stage": "Rejected",
+    "salary": 1500000,
+    "appliedDate": "2026-03-06T12:10:00Z",
+    "interviewDate": "2026-03-16T15:00:00Z",
+    "note": "Rejected after coding round",
+    "jobUrl": "https://ola.com/careers/frontend-developer"
+  },
+  {
+    "company": "PhonePe",
+    "role": "Frontend Engineer",
+    "stage": "Applied",
+    "salary": 1600000,
+    "appliedDate": "2026-03-13T09:45:00Z",
+    "interviewDate": null,
+    "note": "Referred by friend",
+    "jobUrl": "https://phonepe.com/careers/frontend-engineer"
+  }
+]
