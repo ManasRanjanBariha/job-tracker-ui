@@ -8,5 +8,9 @@ export const routes: Routes = [
     {
         path:'',
         loadComponent: () => import('./pages/login/login').then(m => m.Login)
+    },
+    {
+        path:'kanban',
+        loadComponent: () => import('./pages/kanban-board/kanban-board').then(m => m.KanbanBoard)
     }
 ];

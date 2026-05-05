@@ -1,0 +1,216 @@
+<app-sidebar></app-sidebar>
+<div class="main">
+    <!-- TOPBAR -->
+    <!-- <header class="topbar">
+    <div class="topbar-left">
+      <span class="page-title">Kanban Board</span>
+      <span style="font-size:12px;color:var(--muted)">12 applications · Updated 2h ago</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-bar"><span style="color:var(--muted)">🔍</span><input placeholder="Search companies, roles..."/></div>
+      <div class="icon-btn" title="Notifications" style="position:relative">🔔<div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg)"></div></div>
+      <button class="btn btn-primary" onclick="openModal()">+ Add Application</button>
+    </div>
+  </header> -->
+    <app-topbar></app-topbar>
+    <!-- STATS STRIP --> <!-- SUBBAR -->
+    <div class="subbar">
+        <div class="subbar-left">
+            <span style="font-size:12px;color:var(--muted);font-weight:600">Filter:</span>
+            <div class="filter-chip active">All</div>
+            <div class="filter-chip">High Priority</div>
+            <div class="filter-chip">Remote</div>
+            <div class="filter-chip">This Week</div>
+            <div class="filter-chip">With Interview</div>
+        </div>
+        <div class="subbar-right">
+            <div class="view-toggle">
+                <div class="view-btn active">⧉ Board</div>
+                <div class="view-btn">☰ List</div>
+            </div>
+            <button class="btn btn-ghost" style="font-size:11px;">⇅ Sort</button>
+        </div>
+    </div>
+
+    <!-- KANBAN -->
+    <div class="kanban-outer">
+        <div class="kanban-scroll">
+            <div class="kanban-board">
+
+                <!-- APPLIED -->
+                <div class="k-col" id="col-applied">
+                    <div class="col-hdr">
+                        <div class="col-pip" style="background:var(--applied)"></div>
+                        <span class="col-name">Applied</span>
+                        <span class="col-count">{{ applications().appliedAppL.length }}</span>
+                        <div class="col-add" onclick="openModal()">+</div>
+                    </div>
+                    <div class="col-total">Total Salary Range: ₹18–42 LPA</div>
+                    <div class="col-body" id="body-applied">
+                        <ng-container *ngFor="let app of applications().appliedAppL">
+                            <div class="jcard" onclick="goDetail()">
+                                <div class="jcard-accent" style="background:var(--applied)"></div>
+                                <div class="jcard-body">
+                                    <div class="jcard-top">
+                                        <div class="jcard-logo"
+                                            style="background:linear-gradient(135deg,#ff6b35,#ff4e19)">R
+                                        </div>
+                                        <div class="jcard-menu">⋯</div>
+                                    </div>
+                                    <div class="jcard-role">{{ app.role }}</div>
+                                    <div class="jcard-co">{{ app.company }}<div class="jcard-co-dot"></div>{{ app.location }}</div>
+                                    <div class="jcard-tags">
+                                        <span class="jtag salary">{{ app.salary | lac }} LPA</span>
+                                        <!-- <span class="jtag remote">Remote</span> -->
+                                        <!-- <span class="jtag">Angular</span> -->
+                                    </div>
+                                    <div class="jcard-footer">
+                                        <span class="jcard-date">Applied on {{ app.appliedDate | appDate }}</span>
+                                        <div class="jcard-priority h"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="add-card" onclick="openModal()">+ Add application</div>
+                    </div>
+                </div>
+
+                <!-- INTERVIEW -->
+                <div class="k-col" id="col-interview">
+                    <div class="col-hdr">
+                        <div class="col-pip" style="background:var(--interview)"></div>
+                        <span class="col-name">Interview</span>
+                        <span class="col-count">{{ applications().interviewAppL.length }}</span>
+                        <div class="col-add">+</div>
+                    </div>
+                    <div class="col-total">{{ applications().interviewAppL.length }} scheduled</div>
+                    <div class="col-body">
+                        <ng-container *ngFor="let app of applications().interviewAppL">
+                            <div class="jcard" onclick="goDetail()">
+                                <div class="jcard-accent" style="background:var(--interview)"></div>
+                                <div class="jcard-body">
+                                    <div class="jcard-top">
+                                        <div class="jcard-logo">{{ app.company.charAt(0).toUpperCase() }}</div>
+                                        <div class="jcard-menu">⋯</div>
+                                    </div>
+                                    <div class="jcard-role">{{ app.role }}</div>
+                                    <div class="jcard-co">{{ app.company }}<div class="jcard-co-dot"></div>{{ app.location }}</div>
+                                    <div class="jcard-tags">
+                                        <span class="jtag salary">{{ app.salary | lac }} LPA</span>
+                                    </div>
+                                    <div class="jcard-footer">
+                                        <span class="jcard-date">Interview on {{ app.interviewDate | appDate }}</span>
+                                        <div class="jcard-priority h"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="add-card">+ Add application</div>
+                    </div>
+                </div>
+
+                <!-- OFFER -->
+                <div class="k-col" id="col-offer">
+                    <div class="col-hdr">
+                        <div class="col-pip" style="background:var(--offer)"></div>
+                        <span class="col-name">Offer 🎉</span>
+                        <span class="col-count"
+                            style="background:rgba(16,185,129,.12);color:var(--green);border-color:rgba(16,185,129,.25)">{{ applications().offerAppL.length }}</span>
+                    </div>
+                    <div class="col-total" style="color:var(--green)">{{ applications().offerAppL.length }} offers received</div>
+                    <div class="col-body">
+                        <ng-container *ngFor="let app of applications().offerAppL">
+                            <div class="jcard" onclick="goDetail()">
+                                <div class="jcard-accent" style="background:var(--offer)"></div>
+                                <div class="jcard-body">
+                                    <div class="jcard-top">
+                                        <div class="jcard-logo">{{ app.company.charAt(0).toUpperCase() }}</div>
+                                        <div class="jcard-menu">⋯</div>
+                                    </div>
+                                    <div class="jcard-role">{{ app.role }}</div>
+                                    <div class="jcard-co">{{ app.company }}<div class="jcard-co-dot"></div>{{ app.location }}</div>
+                                    <div class="jcard-tags">
+                                        <span class="jtag salary">{{ app.salary | lac }} LPA</span>
+                                    </div>
+                                    <div class="jcard-footer">
+                                        <span class="jcard-date">Offer received {{ app.appliedDate | appDate }}</span>
+                                        <div class="jcard-priority h"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- REJECTED -->
+                <div class="k-col" id="col-rejected">
+                    <div class="col-hdr">
+                        <div class="col-pip" style="background:var(--rejected)"></div>
+                        <span class="col-name">Rejected</span>
+                        <span class="col-count">{{ applications().rejectedAppL.length }}</span>
+                    </div>
+                    <div class="col-total">Learn & move on 💪</div>
+                    <div class="col-body">
+                        <ng-container *ngFor="let app of applications().rejectedAppL">
+                            <div class="jcard" onclick="goDetail()">
+                                <div class="jcard-accent" style="background:var(--rejected)"></div>
+                                <div class="jcard-body">
+                                    <div class="jcard-top">
+                                        <div class="jcard-logo">{{ app.company.charAt(0).toUpperCase() }}</div>
+                                        <div class="jcard-menu">⋯</div>
+                                    </div>
+                                    <div class="jcard-role">{{ app.role }}</div>
+                                    <div class="jcard-co">{{ app.company }}<div class="jcard-co-dot"></div>{{ app.location }}</div>
+                                    <div class="jcard-tags">
+                                        <span class="jtag salary">{{ app.salary | lac }} LPA</span>
+                                    </div>
+                                    <div class="jcard-footer">
+                                        <span class="jcard-date">Rejected {{ app.appliedDate | appDate }}</span>
+                                        <div class="jcard-priority l"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- GHOSTED -->
+                <div class="k-col" id="col-ghosted">
+                    <div class="col-hdr">
+                        <div class="col-pip" style="background:var(--ghosted)"></div>
+                        <span class="col-name">Ghosted</span>
+                        <span class="col-count">{{ applications().GhostedAppL.length }}</span>
+                    </div>
+                    <div class="col-total">No response in 14+ days</div>
+                    <div class="col-body">
+                        <ng-container *ngFor="let app of applications().GhostedAppL">
+                            <div class="jcard" onclick="goDetail()">
+                                <div class="jcard-accent" style="background:var(--ghosted)"></div>
+                                <div class="jcard-body">
+                                    <div class="jcard-top">
+                                        <div class="jcard-logo">{{ app.company.charAt(0).toUpperCase() }}</div>
+                                        <div class="jcard-menu">⋯</div>
+                                    </div>
+                                    <div class="jcard-role">{{ app.role }}</div>
+                                    <div class="jcard-co">{{ app.company }}<div class="jcard-co-dot"></div>{{ app.location }}</div>
+                                    <div class="jcard-tags">
+                                        <span class="jtag salary">{{ app.salary | lac }} LPA</span>
+                                    </div>
+                                    <div class="jcard-footer">
+                                        <span class="jcard-date">Applied {{ app.appliedDate | appDate }}</span>
+                                        <div class="jcard-priority l"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="col-empty" *ngIf="applications().GhostedAppL.length === 0">
+                            <div class="e-icon">👻</div>
+                            <p>Hopefully stays empty!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
