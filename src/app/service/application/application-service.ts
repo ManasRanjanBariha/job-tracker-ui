@@ -13,4 +13,8 @@ export class ApplicationService {
   getAllApplications() {
     return this.http.get(environment.apiUrl + endPoints.ALLAPPLICATIONS);
   }
+
+  createApplication(applicationData: any) {
+    return this.http.post(environment.apiUrl + endPoints.CREATEAPPLICATION, applicationData);
+  }
 }

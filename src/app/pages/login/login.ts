@@ -59,7 +59,7 @@ showConfirmPass = false;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    const user = this.storageService.get('user');
+    const user = this.storageService.getValue('user');
     if (user) {
       this.router.navigate(['/dashboard']);
     }
@@ -101,7 +101,7 @@ showConfirmPass = false;
       if (response.user) {
         this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
         this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000); // 24 hours
-        this.storageService.setWithExpiry('user', response.user, 86400000);
+        this.storageService.setWithExpiry('user', response.user, 86400000); // 1 day
         this.banners.loginOk = true;
         this.router.navigate(['/dashboard']);
 
@@ -148,8 +148,8 @@ showConfirmPass = false;
       if (response.user) {
         this.toastService.success('Registration successful!');
         this.storageService.setWithExpiry('accessToken', response.accessToken, 3600000); // 1 hour
-        this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000);
-        this.storageService.setWithExpiry('user', response.user, 86400000);
+        this.storageService.setWithExpiry('refreshToken', response.refreshToken, 86400000); // 24 hours
+        this.storageService.setWithExpiry('user', response.user, 86400000); // 1 day
         this.router.navigate(['/dashboard']);
       } else {
         this.toastService.error(response.message || 'Registration failed.');

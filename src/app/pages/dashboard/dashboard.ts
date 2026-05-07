@@ -14,6 +14,7 @@ import { StorageService } from '../../service/storage/storage-service';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../service/dashboard/dashboard-service';
 import { ErrorHandlerService } from '../../service/error-handler/error-handler.service';
+import {JobModal} from '../../components/job-modal/job-modal';
 
 interface DashboardResponse {
   dashboardData: {
@@ -42,6 +43,7 @@ interface DashboardResponse {
     GoalCard,
     UpcomingInterviewList,
     QuickActionCard,
+    JobModal,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
@@ -57,6 +59,7 @@ export class Dashboard implements OnInit {
   avgDaysPerStage = 0;
   last7Months = signal<any[]>([]);
   funnelData = signal<any>(null);
+  isModalOpen = signal(false);
   private isInitialized = false;
 
   updateStats() {}
@@ -74,6 +77,16 @@ export class Dashboard implements OnInit {
     }
     this.isInitialized = true;
 
+    // Check if access token is still valid
+    const accessToken = this.storageService.getValue('accessToken');
+    if (!accessToken) {
+      console.log('Access token expired or missing, redirecting to login page.');
+      // Clear user as well
+      localStorage.removeItem('user');
+      this.router.navigate(['/']);
+      return;
+    }
+
     const user = this.storageService.get('user');
     if (!user) {
       console.log('No user logged in, redirecting to login page.');
@@ -83,22 +96,15 @@ export class Dashboard implements OnInit {
     }
   }
 
-  // async getDashboardStats() {
-  //   try {
-  //     const dashboardData: any =
-  //       await this.dashboardService.getDashboardStats();
-  //     console.log('Dashboard Stats:', dashboardData);
-  //     this.dashboardData = dashboardData;
-  //     // Commenting out stats update for now since API response structure is still being finalized
-  //     // this.updateStatsFromData(dashboardData.dashboardData.overview);
-  //     this.updateRecentApplication(dashboardData.dashboardData);
-  //   } catch (error: any) {
-  //     if (this.errorHandler.handleUnauthorizedError(error)) {
-  //       return;
-  //     }
-  //     console.error('Error fetching dashboard stats:', error);
-  //   }
-  // }
+  openModal() {
+    this.isModalOpen.set(true);
+  }
+
+  closeModal() {
+    this.isModalOpen.set(false);
+  }
+
+
 
  getDashboardStats() {
   this.dashboardService.getDashboardStats().subscribe({
@@ -165,13 +171,6 @@ export class Dashboard implements OnInit {
     // updating funnel data after stats are updated
     this.updateFunnelData();
     
-    // console.log('Updated stats:', {
-    //   totalApplied: this.totalApplied,
-    //   interviews: this.interviews,
-    //   offers: this.offers,
-    //   responseRate: this.responseRate,
-    //   avgDaysPerStage: this.avgDaysPerStage
-    // });
   }
 
   // UpdateRecentApplication

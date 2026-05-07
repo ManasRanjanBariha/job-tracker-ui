@@ -5,13 +5,15 @@
   </div>
   <nav class="sidebar-nav">
     <div class="nav-lbl">Main</div>
-    <a class="nav-item active" href="#"><span class="nav-icon">⊞</span> Dashboard</a>
-    <a class="nav-item" href="job-tracker-kanban.html"><span class="nav-icon">⧉</span> Kanban Board<span class="nav-badge">12</span></a>
-    <a class="nav-item" href="job-tracker-analytics.html"><span class="nav-icon">◎</span> Analytics</a>
-    <div class="nav-lbl" style="margin-top:8px">Workspace</div>
-    <a class="nav-item" href="#" style="position:relative"><span class="nav-icon">🔔</span> Reminders<span class="nav-badge">3</span><div class="notif-dot"></div></a>
-    <a class="nav-item" href="#"><span class="nav-icon">📎</span> Documents</a>
-    <a class="nav-item" href="#"><span class="nav-icon">⚙</span> Settings</a>
+    <a class="nav-item" [class.active]="isActive('dashboard')" (click)="navigateTo('dashboard')"><span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item" [class.active]="isActive('kanban')" (click)="navigateTo('kanban')"><span class="nav-icon">⧉</span> Kanban Board
+      <!-- <span class="nav-badge">12</span> -->
+    </a>
+    <!-- <a class="nav-item" [class.active]="isActive('analytics')" (click)="navigateTo('analytics')"><span class="nav-icon">◎</span> Analytics</a> -->
+    <!-- <div class="nav-lbl" style="margin-top:8px">Workspace</div>
+    <a class="nav-item" [class.active]="isActive('reminders')" (click)="navigateTo('reminders')" style="position:relative"><span class="nav-icon">🔔</span> Reminders<span class="nav-badge">3</span><div class="notif-dot"></div></a>
+    <a class="nav-item" [class.active]="isActive('documents')" (click)="navigateTo('documents')"><span class="nav-icon">📎</span> Documents</a>
+    <a class="nav-item" [class.active]="isActive('settings')" (click)="navigateTo('settings')"><span class="nav-icon">⚙</span> Settings</a> -->
   </nav>
   <div class="sidebar-footer">
     <div class="user-chip">

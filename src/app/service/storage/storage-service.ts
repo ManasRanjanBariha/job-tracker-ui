@@ -22,19 +22,46 @@ export class StorageService {
     if (!itemStr) {
       return null;
     }
-    const item = JSON.parse(itemStr);
-    const now = new Date();
-    if (now.getTime() > item.expiry) {
+    try {
+      const item = JSON.parse(itemStr);
+      // Check if item has expiry and if it's expired
+      if (item.expiry) {
+        const now = new Date();
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key);
+          return null;
+        }
+        return item.value;
+      }
+      // If no expiry, return the item as is
+      return item;
+    } catch (error) {
+      console.error('Error parsing storage item:', error);
       localStorage.removeItem(key);
       return null;
-    } 
-    return item.value;
+    }
   }
   get(key: string) {
     const itemStr = localStorage.getItem(key);
     if (!itemStr) {
       return null;
     }
-    return JSON.parse(itemStr);
+    try {
+      const item = JSON.parse(itemStr);
+      // Check if item has expiry and if it's expired
+      if (item.expiry) {
+        const now = new Date();
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key);
+          return null;
+        }
+        return item.value;
+      }
+      return item;
+    } catch (error) {
+      console.error('Error parsing storage item:', error);
+      localStorage.removeItem(key);
+      return null;
+    }
   }
 }

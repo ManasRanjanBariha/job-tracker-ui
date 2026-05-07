@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-quick-action-card',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './quick-action-card.scss',
 })
 export class QuickActionCard {
+  @Output() addApplication = new EventEmitter<void>();
 
+  onAddApp() {
+    this.addApplication.emit();
+  }
 }

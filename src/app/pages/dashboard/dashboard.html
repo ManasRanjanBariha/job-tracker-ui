@@ -1,6 +1,6 @@
 <app-sidebar></app-sidebar>
 <div class="main">
-  <app-topbar></app-topbar>
+  <app-topbar (addApplication)="openModal()"></app-topbar>
   <div class="content">
 
     <app-stat-row [totalApplied]="totalApplied" [interviews]="interviews" [offers]="offers" [responseRate]="responseRate" [avgDaysPerStage]="avgDaysPerStage"></app-stat-row>
@@ -28,9 +28,12 @@
               <app-goal-card></app-goal-card>
             </app-dashboard-card>
             <app-dashboard-card title="⚡ Quick Actions">
-              <app-quick-action-card></app-quick-action-card>
+              <app-quick-action-card (addApplication)="openModal()"></app-quick-action-card>
              </app-dashboard-card>
         </div>
     </div>
   </div>
 </div>
+
+<!-- Job Modal -->
+<app-job-modal [isOpen]="isModalOpen()" (modalClose)="closeModal()"></app-job-modal>

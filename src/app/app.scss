@@ -5,3 +5,25 @@
   overflow: hidden;
   background: #0f1117;
 }
+
+
+// /* MODAL */
+// .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(5px);z-index:200;display:none;align-items:center;justify-content:center;}
+// .modal-overlay.open{display:flex;}
+// .modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;width:480px;max-width:95vw;max-height:90vh;overflow-y:auto;animation:fadeUp .25s ease both;}
+// @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+// .modal-hdr{padding:24px 24px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+// .modal-title{font-size:18px;font-weight:800;}
+// .modal-close{width:32px;height:32px;border-radius:8px;background:var(--surface2);border:none;color:var(--muted2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+// .modal-close:hover{background:var(--surface);color:var(--text);}
+// .modal-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px;}
+// .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+// .form-field{display:flex;flex-direction:column;gap:6px;}
+// .form-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+// .form-input,.form-select,.form-textarea{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .15s;resize:none;}
+// .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);}
+// .form-select option{background:var(--surface2);}
+// .form-textarea{height:90px;line-height:1.6;}
+// .modal-footer{display:flex;gap:10px;justify-content:flex-end;padding:0 24px 24px;}
+
+

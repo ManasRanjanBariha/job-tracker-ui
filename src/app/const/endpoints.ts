@@ -4,6 +4,7 @@ const endPoints = {
   REFRESH: '/auth/refresh',
   APPLICATIONS: '/applications',
   ALLAPPLICATIONS: '/applications/all',
+  CREATEAPPLICATION:'/applications/add',
   DASHBOARD: '/stats/dashboard',
 };
 

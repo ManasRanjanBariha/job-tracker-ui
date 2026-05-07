@@ -1,0 +1,70 @@
+<div class="modal-overlay" [class.open]="isOpen" id="addModal" (click)="onOverlayClick($event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">+ New Application</div>
+      <button class="modal-close" (click)="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Company Name</label>
+          <input class="form-input" placeholder="e.g. Google" [(ngModel)]="applicationData.company" name="companyName"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Job Title</label>
+          <input class="form-input" placeholder="e.g. Senior Frontend Dev" [(ngModel)]="applicationData.role" name="jobTitle"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Location</label>
+          <input class="form-input" placeholder="e.g. Bangalore / Remote" [(ngModel)]="applicationData.location" name="location"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Stage</label>
+          <select class="form-select" [(ngModel)]="applicationData.stage" name="stage">
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Offer</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Salary</label>
+          <input class="form-input" placeholder="e.g. 30" [(ngModel)]="applicationData.salary" name="salary"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Source</label>
+          <input class="form-input" placeholder="e.g. LinkedIn, Indeed" [(ngModel)]="applicationData.source" name="source"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Applied Date</label>
+          <input class="form-input" type="date" [(ngModel)]="applicationData.appliedDate" name="appliedDate"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Priority</label>
+          <select class="form-select" [(ngModel)]="applicationData.priority" name="priority">
+            <option value="high">High</option>
+            <option value="medium" default>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Job URL</label>
+        <input class="form-input" placeholder="https://careers.google.com/..." [(ngModel)]="applicationData.jobUrl" name="jobUrl"/>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Notes</label>
+        <textarea class="form-textarea" placeholder="Recruiter contact, referral, key notes..." [(ngModel)]="applicationData.note" name="note"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" (click)="closeModal()">Cancel</button>
+      <button class="btn btn-primary" (click)="saveApplication()">Save Application →</button>
+    </div>
+  </div>
+</div>
