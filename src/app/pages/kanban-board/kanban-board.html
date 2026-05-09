@@ -12,16 +12,14 @@
       <button class="btn btn-primary" onclick="openModal()">+ Add Application</button>
     </div>
   </header> -->
-    <app-topbar></app-topbar>
+    <app-topbar (addApplication)="openModal()"></app-topbar>
     <!-- STATS STRIP --> <!-- SUBBAR -->
     <div class="subbar">
         <div class="subbar-left">
             <span style="font-size:12px;color:var(--muted);font-weight:600">Filter:</span>
-            <div class="filter-chip active">All</div>
-            <div class="filter-chip">High Priority</div>
-            <div class="filter-chip">Remote</div>
-            <div class="filter-chip">This Week</div>
-            <div class="filter-chip">With Interview</div>
+            <div class="filter-chip" [class.active]="activeFilter() === 'All'" (click)="setFilter('All')">All</div>
+            <div class="filter-chip" [class.active]="activeFilter() === 'High Priority'" (click)="setFilter('High Priority')">High Priority</div>
+            <div class="filter-chip" [class.active]="activeFilter() === 'This Week'" (click)="setFilter('This Week')">This Week</div>
         </div>
         <div class="subbar-right">
             <div class="view-toggle">
@@ -43,12 +41,12 @@
                         <div class="col-pip" style="background:var(--applied)"></div>
                         <span class="col-name">Applied</span>
                         <span class="col-count">{{ applications().appliedAppL.length }}</span>
-                        <div class="col-add" onclick="openModal()">+</div>
+                        <div class="col-add" (click)="openModal()">+</div>
                     </div>
                     <div class="col-total">Total Salary Range: ₹18–42 LPA</div>
                     <div class="col-body" id="body-applied">
                         <ng-container *ngFor="let app of applications().appliedAppL">
-                            <div class="jcard" onclick="goDetail()">
+                            <div class="jcard" (click)="goDetail()">
                                 <div class="jcard-accent" style="background:var(--applied)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -71,7 +69,7 @@
                                 </div>
                             </div>
                         </ng-container>
-                        <div class="add-card" onclick="openModal()">+ Add application</div>
+                        <div class="add-card" (click)="openModal()">+ Add application</div>
                     </div>
                 </div>
 
@@ -81,12 +79,12 @@
                         <div class="col-pip" style="background:var(--interview)"></div>
                         <span class="col-name">Interview</span>
                         <span class="col-count">{{ applications().interviewAppL.length }}</span>
-                        <div class="col-add">+</div>
+                        <div class="col-add" (click)="openModal()">+</div>
                     </div>
                     <div class="col-total">{{ applications().interviewAppL.length }} scheduled</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().interviewAppL">
-                            <div class="jcard" onclick="goDetail()">
+                            <div class="jcard" (click)="goDetail()">
                                 <div class="jcard-accent" style="background:var(--interview)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -120,7 +118,7 @@
                     <div class="col-total" style="color:var(--green)">{{ applications().offerAppL.length }} offers received</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().offerAppL">
-                            <div class="jcard" onclick="goDetail()">
+                            <div class="jcard" (click)="goDetail()">
                                 <div class="jcard-accent" style="background:var(--offer)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -152,7 +150,7 @@
                     <div class="col-total">Learn & move on 💪</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().rejectedAppL">
-                            <div class="jcard" onclick="goDetail()">
+                            <div class="jcard" (click)="goDetail()">
                                 <div class="jcard-accent" style="background:var(--rejected)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -184,7 +182,7 @@
                     <div class="col-total">No response in 14+ days</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().GhostedAppL">
-                            <div class="jcard" onclick="goDetail()">
+                            <div class="jcard" (click)="goDetail()">
                                 <div class="jcard-accent" style="background:var(--ghosted)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">

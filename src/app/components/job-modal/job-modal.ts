@@ -22,7 +22,7 @@ export class JobModal {
     stage: 'Applied',
     salary: '',
     appliedDate: '',
-    priority: 'Medium',
+    priority: 'medium',
     jobUrl: '',
     note: '',
     source: ''

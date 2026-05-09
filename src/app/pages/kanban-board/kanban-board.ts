@@ -25,6 +25,14 @@ export class KanbanBoard {
   applicationService = inject(ApplicationService);
 
   private isInitialized = false;
+  private allApplications = signal({
+    interviewAppL: [] as any[],
+    appliedAppL: [] as any[],
+    offerAppL: [] as any[],
+    rejectedAppL: [] as any[],
+    GhostedAppL: [] as any[],
+  });
+  
   applications = signal({
     interviewAppL: [] as any[],
     appliedAppL: [] as any[],
@@ -32,7 +40,9 @@ export class KanbanBoard {
     rejectedAppL: [] as any[],
     GhostedAppL: [] as any[],
   });
+  
   isModalOpen = signal(false);
+  activeFilter = signal<'All' | 'High Priority' | 'This Week'>('All');
   interviewAppL: any[] = [];
   appliedAppL: any[] = [];
   offerAppL: any[] = [];
@@ -60,6 +70,52 @@ export class KanbanBoard {
   // method to close the modal
   closeModal() {
     this.isModalOpen.set(false);
+  }
+
+  // method to go to application detail page
+  goDetail() {
+    // TODO: Implement navigation to application detail page
+    console.log('Navigate to application details');
+  }
+
+  // method to set the active filter
+  setFilter(filterType: 'All' | 'High Priority' | 'This Week') {
+    this.activeFilter.set(filterType);
+    this.applyFilters();
+  }
+
+  // method to apply filters based on active filter
+  applyFilters() {
+    const filterType = this.activeFilter();
+    let filteredApplications = JSON.parse(JSON.stringify(this.allApplications()));
+
+    if (filterType === 'High Priority') {
+      filteredApplications = {
+        interviewAppL: this.allApplications().interviewAppL.filter(app => app.priority === 'high'),
+        appliedAppL: this.allApplications().appliedAppL.filter(app => app.priority === 'high'),
+        offerAppL: this.allApplications().offerAppL.filter(app => app.priority === 'high'),
+        rejectedAppL: this.allApplications().rejectedAppL.filter(app => app.priority === 'high'),
+        GhostedAppL: this.allApplications().GhostedAppL.filter(app => app.priority === 'high'),
+      };
+    } else if (filterType === 'This Week') {
+      const today = new Date();
+      const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+      
+      const filterByWeek = (app: any) => {
+        const appliedDate = new Date(app.appliedDate);
+        return appliedDate >= sevenDaysAgo && appliedDate <= today;
+      };
+
+      filteredApplications = {
+        interviewAppL: this.allApplications().interviewAppL.filter(filterByWeek),
+        appliedAppL: this.allApplications().appliedAppL.filter(filterByWeek),
+        offerAppL: this.allApplications().offerAppL.filter(filterByWeek),
+        rejectedAppL: this.allApplications().rejectedAppL.filter(filterByWeek),
+        GhostedAppL: this.allApplications().GhostedAppL.filter(filterByWeek),
+      };
+    }
+
+    this.applications.set(filteredApplications);
   }
 
   // getting all the applications and categorizing them based on their stage for kanban board display
@@ -97,11 +153,7 @@ export class KanbanBoard {
         }
 
         this.applications.set(categorized);
-        console.log('Interview:', categorized.interviewAppL);
-        console.log('Applied:', categorized.appliedAppL);
-        console.log('Offer:', categorized.offerAppL);
-        console.log('Rejected:', categorized.rejectedAppL);
-        console.log('Ghosted:', categorized.GhostedAppL);
+        this.allApplications.set(categorized);
       },
       error: (error: any) => {
         if (this.errorHandler.handleUnauthorizedError(error)) return;
