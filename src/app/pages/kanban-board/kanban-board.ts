@@ -72,6 +72,11 @@ export class KanbanBoard {
     this.isModalOpen.set(false);
   }
 
+  // method to navigate to application detail page on click of application card in kanban board
+  navigationToApplicationDetail(applicationId: number) {
+    this.router.navigate(['/application', applicationId]);
+  }
+
   // method to go to application detail page
   goDetail() {
     // TODO: Implement navigation to application detail page

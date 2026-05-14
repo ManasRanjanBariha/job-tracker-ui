@@ -2,7 +2,7 @@
     <span>Role / Company</span><span>Salary</span><span>Applied</span><span>Stage</span>
 </div>
 
-<div class="apps-row" *ngFor="let app of applications">
+<div class="apps-row" *ngFor="let app of applications" (click)="navigationToApplicationDetail(app.id)">
     <div class="app-co">
         <div class="app-logo" style="background:linear-gradient(135deg,#4285f4,#1a73e8)">G</div>
         <div>

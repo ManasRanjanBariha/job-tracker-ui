@@ -299,6 +299,7 @@
               <ng-content *ngIf="jobData()?.priority === 'high'"><span class="info-val red">🔴 High</span></ng-content>
               <ng-content *ngIf="jobData()?.priority === 'medium'"><span class="info-val yellow">🟡 Medium</span></ng-content>
               <ng-content *ngIf="jobData()?.priority === 'low'"><span class="info-val green">🟢 Low</span></ng-content>
+               <ng-content *ngIf="jobData()?.priority === null"><span class="info-val yellow">🟡 Medium</span></ng-content>
             </div>
             <div class="info-row">
               <span class="info-key">🔗 Source</span>

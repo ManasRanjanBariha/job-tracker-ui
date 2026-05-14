@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LacPipe } from '../../shared/pipes/lac.pipe';
 import { AppDatePipe } from '../../shared/pipes/app-date.pipe';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-application-table',
   standalone: true,
@@ -12,6 +13,7 @@ import { AppDatePipe } from '../../shared/pipes/app-date.pipe';
 export class ApplicationTable {
   private _applications: any[] = [];
 
+router= inject(Router);
   @Input() 
   set applications(value: any[]) {
     // console.log('SETTER called with:', value);
@@ -20,6 +22,10 @@ export class ApplicationTable {
 
   get applications(): any[] {
     return this._applications;
+  }
+
+  navigationToApplicationDetail(applicationId: number) {
+    this.router.navigate(['/application', applicationId]);
   }
 
   getStageClass(stage: string): string {

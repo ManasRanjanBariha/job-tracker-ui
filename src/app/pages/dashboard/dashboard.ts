@@ -87,6 +87,8 @@ export class Dashboard implements OnInit {
       return;
     }
 
+    
+
     const user = this.storageService.get('user');
     if (!user) {
       console.log('No user logged in, redirecting to login page.');
@@ -103,7 +105,7 @@ export class Dashboard implements OnInit {
   closeModal() {
     this.isModalOpen.set(false);
   }
-
+  
 
 
  getDashboardStats() {

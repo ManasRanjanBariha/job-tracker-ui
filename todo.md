@@ -16,8 +16,9 @@
     -Add (done)
     -Update 
     -delete
-    -display
+    -display(done)
     -update the topbar to hold the edit button for the application
+    -navigation to from every page to go the application 
 
 -Reminders
 -Activtity timeline

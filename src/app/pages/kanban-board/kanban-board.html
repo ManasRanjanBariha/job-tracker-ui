@@ -46,7 +46,7 @@
                     <div class="col-total">Total Salary Range: ₹18–42 LPA</div>
                     <div class="col-body" id="body-applied">
                         <ng-container *ngFor="let app of applications().appliedAppL">
-                            <div class="jcard" (click)="goDetail()">
+                            <div class="jcard" (click)="navigationToApplicationDetail(app.id)">
                                 <div class="jcard-accent" style="background:var(--applied)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -84,7 +84,7 @@
                     <div class="col-total">{{ applications().interviewAppL.length }} scheduled</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().interviewAppL">
-                            <div class="jcard" (click)="goDetail()">
+                            <div class="jcard" (click)="navigationToApplicationDetail(app.id)">
                                 <div class="jcard-accent" style="background:var(--interview)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -118,7 +118,7 @@
                     <div class="col-total" style="color:var(--green)">{{ applications().offerAppL.length }} offers received</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().offerAppL">
-                            <div class="jcard" (click)="goDetail()">
+                            <div class="jcard" (click)="navigationToApplicationDetail(app.id)">
                                 <div class="jcard-accent" style="background:var(--offer)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -150,7 +150,7 @@
                     <div class="col-total">Learn & move on 💪</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().rejectedAppL">
-                            <div class="jcard" (click)="goDetail()">
+                            <div class="jcard" (click)="navigationToApplicationDetail(app.id)">
                                 <div class="jcard-accent" style="background:var(--rejected)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
@@ -182,7 +182,7 @@
                     <div class="col-total">No response in 14+ days</div>
                     <div class="col-body">
                         <ng-container *ngFor="let app of applications().GhostedAppL">
-                            <div class="jcard" (click)="goDetail()">
+                            <div class="jcard" (click)="navigationToApplicationDetail(app.id)">
                                 <div class="jcard-accent" style="background:var(--ghosted)"></div>
                                 <div class="jcard-body">
                                     <div class="jcard-top">
