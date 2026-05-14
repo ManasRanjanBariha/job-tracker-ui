@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 <div class="main">
     
-    <app-topbar ></app-topbar>
+    <app-topbar [isEditMode]="true" (addApplication)="openModal()"></app-topbar>
     <main class="page-content">
 
     <!-- ── HERO CARD ── -->
@@ -320,14 +320,7 @@
           </div>
           <div class="notes-body">
             <div class="notes-text">
-              Recruiter: <span class="highlight">Priya S.</span><br>
-              Team: <span class="highlight">Ads Frontend</span> (growing fast)<br><br>
-              Focus areas for technical:<br>
-              → Angular v17+ signals<br>
-              → RxJS error handling<br>
-              → NgRx effects + selectors<br>
-              → System design: dashboards<br><br>
-              <span class="link">glassdoor.com/google-reviews</span>
+              {{ jobData()?.note || 'No notes added yet. Click edit to add important details, reminders, or interview insights here.' }}
             </div>
           </div>
         </div>
@@ -445,7 +438,7 @@
       </div>
       <div style="display:flex;gap:8px;">
         <button class="btn btn-danger">🗑 Archive</button>
-        <button class="btn btn-success" onclick="openModal()">✓ Got Offer</button>
+        <button class="btn btn-success" (click)="openModal()">✓ Got Offer</button>
       </div>
     </div>
 
@@ -453,4 +446,4 @@
 
 </div>
 <!-- Job Modal -->
-<app-job-modal [isOpen]="isModalOpen()" (modalClose)="closeModal()"></app-job-modal>
+<app-job-modal [isOpen]="isModalOpen()" (modalClose)="closeModal()" [applicationData]="jobData()"></app-job-modal>

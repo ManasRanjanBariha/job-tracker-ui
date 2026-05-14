@@ -1,7 +1,8 @@
 <div class="modal-overlay" [class.open]="isOpen" id="addModal" (click)="onOverlayClick($event)">
   <div class="modal">
     <div class="modal-hdr">
-      <div class="modal-title">+ New Application</div>
+      <div class="modal-title" *ngIf="!isEditMode">+ New Application</div>
+      <div class="modal-title" *ngIf="isEditMode">✏️ Edit Application</div>
       <button class="modal-close" (click)="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -64,7 +65,8 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost" (click)="closeModal()">Cancel</button>
-      <button class="btn btn-primary" (click)="saveApplication()">Save Application →</button>
+      <button class="btn btn-primary" (click)="saveApplication()" *ngIf="!isEditMode">Save Application →</button>
+      <button class="btn btn-primary" (click)="saveApplication()" *ngIf="isEditMode">Update Application →</button>
     </div>
   </div>
 </div>

@@ -20,4 +20,7 @@ export class ApplicationService {
   getApplicationById(id: string) {
     return this.http.get(environment.apiUrl + endPoints.APPLICATIONBYID.replace(':id', id));
   }
+  updateApplication(id: string, applicationData: any) {
+    return this.http.put(environment.apiUrl + endPoints.APPLICATIONBYID.replace(':id', id), applicationData); 
+  }
 }

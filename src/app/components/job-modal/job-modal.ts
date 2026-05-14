@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApplicationService } from '../../service/application/application-service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-job-modal',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './job-modal.html',
   styleUrl: './job-modal.scss',
 })
@@ -15,7 +16,7 @@ export class JobModal {
 
   applicationService = inject(ApplicationService);
 
-  applicationData = {
+  @Input() applicationData = {
     company: '',
     role: '',
     location: '',
@@ -27,6 +28,11 @@ export class JobModal {
     note: '',
     source: ''
   };
+
+  // Computed property to determine if we're in edit mode
+  get isEditMode(): boolean {
+    return !!(this.applicationData as any)?.id || (this.applicationData as any)?.id;
+  }
 
   closeModal() {
     this.modalClose.emit();
@@ -46,19 +52,36 @@ export class JobModal {
       return;
     }
 
-    this.applicationService.createApplication(this.applicationData).subscribe({
-      next: (response) => {
-        console.log('Application saved successfully:', response);
-        // Emit the application data to parent component        this.applicationSaved.emit(response);
-        // Reset form and close modal
-        this.resetForm();
-        this.closeModal();
-      },
-      error: (error) => {
-        console.error('Error saving application:', error);
-        alert('Failed to save application. Please try again.');
-      }
-    });
+    if (this.isEditMode) {
+      // Update existing application
+      const id = (this.applicationData as any)._id || (this.applicationData as any).id;
+      this.applicationService.updateApplication(id, this.applicationData).subscribe({
+        next: (response:any) => {
+          console.log('Application updated successfully:', response);
+          this.applicationSaved.emit(response);
+          // this.resetForm();
+          this.closeModal();
+        },
+        error: (error:any ) => {
+          console.error('Error updating application:', error);
+          alert('Failed to update application. Please try again.');
+        }
+      });
+    } else {
+      // Create new application
+      this.applicationService.createApplication(this.applicationData).subscribe({
+        next: (response) => {
+          console.log('Application saved successfully:', response);
+          this.applicationSaved.emit(response);
+          this.resetForm();
+          this.closeModal();
+        },
+        error: (error) => {
+          console.error('Error saving application:', error);
+          alert('Failed to save application. Please try again.');
+        }
+      });
+    }
   }
 
   resetForm() {
@@ -76,3 +99,4 @@ export class JobModal {
     };
   }
 }
+

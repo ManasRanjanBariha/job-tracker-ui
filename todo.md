@@ -14,12 +14,12 @@
 -Quick actions
 -application details 
     -Add (done)
-    -Update 
+    -Update (inprogress)
     -delete
     -display(done)
-    -update the topbar to hold the edit button for the application
-    -navigation to from every page to go the application 
-
+    -update the topbar to hold the edit button for the application(done)
+    -navigation to from every page to go the application (done)
+-Toaster service
 -Reminders
 -Activtity timeline
     -display

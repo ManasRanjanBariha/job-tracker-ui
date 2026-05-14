@@ -111,12 +111,12 @@ export class Dashboard implements OnInit {
  getDashboardStats() {
   this.dashboardService.getDashboardStats().subscribe({
     next: (dashboardData: any) => {
-      console.log('Dashboard Stats:', dashboardData);
+      // console.log('Dashboard Stats:', dashboardData);
       this.dashboardData = dashboardData;
       this.updateStatsFromData(dashboardData.dashboardData.overview);
       this.last7Months.set(dashboardData.dashboardData.lastSevenMonthsData || []);
       this.updateRecentApplication(dashboardData.dashboardData);
-      console.log('Last 7 months set to:', this.last7Months());
+      // console.log('Last 7 months set to:', this.last7Months());
       
     },
     error: (error: any) => {

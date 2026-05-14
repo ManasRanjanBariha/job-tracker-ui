@@ -358,6 +358,7 @@
   border-radius: 8px; padding: 14px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; color: var(--muted2); line-height: 1.8;
+  white-space: pre-wrap; word-wrap: break-word;
 }
 .notes-text .highlight { color: var(--yellow); }
 .notes-text .link      { color: var(--accent); cursor: pointer; }

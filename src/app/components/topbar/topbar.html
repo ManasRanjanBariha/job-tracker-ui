@@ -6,6 +6,8 @@
     <div class="topbar-right">
       <div class="greeting-chip">🟢 Open to Work</div>
       <div class="icon-btn" style="position:relative">🔔<div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--red);border:1.5px solid var(--bg)"></div></div>
-      <button class="btn btn-primary" (click)="onAddApp()">+ Add Application</button>
+      <button class="btn btn-primary" (click)="onAddApp()" *ngIf="!isEditMode">+ Add Application</button>
+      <button class="btn btn-primary" (click)="onAddApp()" *ngIf="isEditMode">✏️ Edit Details</button>
+      
     </div>
   </header>

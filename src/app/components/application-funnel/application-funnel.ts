@@ -16,9 +16,9 @@ export class ApplicationFunnel {
 
   @Input() 
   set funnelData(value: any) {
-    console.log('Funnel data SETTER called with:', value);
+    // console.log('Funnel data SETTER called with:', value);
     this._data.set(value);
-    console.log('Funnel data after setting:', this._data());
+    // console.log('Funnel data after setting:', this._data());
   }
   
   constructor() {

@@ -44,7 +44,8 @@ export class ApplicationDetail {
       this.applicationService.getApplicationById(id).subscribe(
         (data: any) => {
           this.jobData.set(data.jobApplication);
-          console.log('Fetched application detail:', this.jobData());
+          // console.log('Fetched application detail:', this.jobData());
+          // console.log("note",this.jobData()?.note);
         },
         (error: any) => {
           console.error('Error fetching application detail:', error);
