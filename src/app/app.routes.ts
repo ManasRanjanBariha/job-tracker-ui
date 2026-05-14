@@ -12,5 +12,9 @@ export const routes: Routes = [
     {
         path:'kanban',
         loadComponent: () => import('./pages/kanban-board/kanban-board').then(m => m.KanbanBoard)
+    },
+    {
+        path:'application/:id',
+        loadComponent: () => import('./pages/application-detail/application-detail').then(m => m.ApplicationDetail)
     }
 ];

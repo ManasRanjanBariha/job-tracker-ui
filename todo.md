@@ -1,3 +1,4 @@
+-(done)kanban board filters
 -(done)job modal()
     -Adding job modal in every page needed---from kanban it is not opening will check once my copilot is back 
 -(done)Create the model to add details for the application
@@ -11,19 +12,32 @@
 
 -Job detail page
 -Quick actions
--update application details 
-
+-application details 
+    -Add (done)
+    -Update 
+    -delete
+    -display
+    -update the topbar to hold the edit button for the application
 
 -Reminders
+-Activtity timeline
+    -display
+    -Add
+    -remove
+    -update
 
--kanban board filters(in progress)
+
 
 ***Imporvements***
 -try calling that -api for more detail it will be good so not doing that part now
+-Implement a interview prep center that will be like user can update jd or add skill according to that I will have table data with a topic that user should study for the job
+(or can you use ai to generate this data for the application display with that application)
+-Intigrate base component
 
 
 backend
--update the job table and saving and everything
+-(done)update the job table and saving and everything
+-activity timeline 
 
 
 

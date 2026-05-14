@@ -17,4 +17,7 @@ export class ApplicationService {
   createApplication(applicationData: any) {
     return this.http.post(environment.apiUrl + endPoints.CREATEAPPLICATION, applicationData);
   }
+  getApplicationById(id: string) {
+    return this.http.get(environment.apiUrl + endPoints.APPLICATIONBYID.replace(':id', id));
+  }
 }

@@ -1,0 +1,455 @@
+<app-sidebar></app-sidebar>
+<div class="main">
+    
+    <app-topbar ></app-topbar>
+    <main class="page-content">
+
+    <!-- ── HERO CARD ── -->
+    <div class="hero-card">
+      <div class="hero-card-top">
+        <div class="co-logo">G</div>
+        <div class="hero-title-group">
+          <div class="hero-job-title">Senior Frontend Developer</div>
+          <div class="hero-company-row">
+            <span class="hero-company">Google</span>
+            <a class="co-link" href="#" target="_blank">↗ Job Post</a>
+            <a class="co-link" href="#" target="_blank">↗ Glassdoor</a>
+          </div>
+          <div class="hero-meta-row">
+            <div class="hbadge interview">⟳ In Interview</div>
+            <div class="hbadge remote">🌐 Remote / Hyderabad</div>
+            <div class="hbadge salary">💰 ₹55 – 80 LPA</div>
+            <div class="hbadge high">🔴 High Priority</div>
+            <div class="hbadge location">L4 · Engineering</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-success">✓ Mark Offer</button>
+          <div class="more-menu">
+            <button class="btn btn-ghost">📋 Clone</button>
+            <button class="btn btn-danger">🗑 Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage Tracker -->
+      <div class="stage-tracker">
+        <div class="stage-step done">
+          <div class="s-circle">✓</div>
+          <span class="s-label">Applied</span>
+        </div>
+        <div class="stage-step done">
+          <div class="s-circle">✓</div>
+          <span class="s-label">Screening</span>
+        </div>
+        <div class="stage-step current">
+          <div class="s-circle">●</div>
+          <span class="s-label">Technical</span>
+        </div>
+        <div class="stage-step">
+          <div class="s-circle">4</div>
+          <span class="s-label">Sys Design</span>
+        </div>
+        <div class="stage-step">
+          <div class="s-circle">5</div>
+          <span class="s-label">HR Round</span>
+        </div>
+        <div class="stage-step">
+          <div class="s-circle">6</div>
+          <span class="s-label">Offer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BODY GRID ── -->
+    <div class="body-grid">
+
+      <!-- MAIN COLUMN -->
+      <div class="main-col">
+
+        <!-- Activity Timeline -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">📋</span> Activity Timeline</span>
+            <span class="card-action" onclick="toggleNoteForm()">+ Add Note</span>
+          </div>
+
+          <!-- Add note form (hidden by default) -->
+          <div class="add-note-form" id="noteForm" style="display:none;margin-top:16px;">
+            <textarea class="add-note-area" placeholder="Add a note, update, or interview detail..."></textarea>
+            <div class="add-note-footer">
+              <div class="note-type-pills">
+                <div class="note-pill sel" onclick="selectPill(this)">Note</div>
+                <div class="note-pill" onclick="selectPill(this)">Interview</div>
+                <div class="note-pill" onclick="selectPill(this)">Rejection</div>
+                <div class="note-pill" onclick="selectPill(this)">Offer</div>
+              </div>
+              <button class="btn btn-primary" style="font-size:11px;padding:6px 14px;">Save</button>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <!-- Item 1 -->
+            <div class="tl-item">
+              <div class="tl-dot" style="background:rgba(245,158,11,0.12);color:var(--yellow);">📞</div>
+              <div class="tl-body">
+                <div class="tl-head">
+                  <div class="tl-title">Technical Round 3 — Scheduled</div>
+                  <div class="tl-time">Mar 12 · 10:00 AM</div>
+                </div>
+                <div class="tl-desc">
+                  Round 3 interview with the core frontend engineering team at Google.
+                  Topics expected: Angular internals, RxJS advanced patterns, NgRx state management,
+                  performance optimisation, and basic system design for a large-scale dashboard.
+                  Video call via Google Meet. Duration ~90 minutes.
+                </div>
+                <div class="tl-tags">
+                  <span class="tl-tag yellow">Upcoming</span>
+                  <span class="tl-tag">Angular</span>
+                  <span class="tl-tag">RxJS</span>
+                  <span class="tl-tag">System Design</span>
+                </div>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="tl-item">
+              <div class="tl-dot" style="background:rgba(16,185,129,0.12);color:var(--green);">✓</div>
+              <div class="tl-body">
+                <div class="tl-head">
+                  <div class="tl-title">Round 2 — Coding Assessment Passed</div>
+                  <div class="tl-time">Mar 5 · 3:00 PM</div>
+                </div>
+                <div class="tl-desc">
+                  90-minute LeetCode-style assessment on HackerRank. Solved 2/3 problems fully,
+                  partial credit on the 3rd (DP problem). Recruiter confirmed pass — moved to
+                  technical interview rounds. Good signs.
+                </div>
+                <div class="tl-tags">
+                  <span class="tl-tag green">Passed</span>
+                  <span class="tl-tag">HackerRank</span>
+                  <span class="tl-tag">DSA</span>
+                </div>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="tl-item">
+              <div class="tl-dot" style="background:rgba(16,185,129,0.12);color:var(--green);">🗣</div>
+              <div class="tl-body">
+                <div class="tl-head">
+                  <div class="tl-title">HR Screening — Passed</div>
+                  <div class="tl-time">Mar 3 · 3:00 PM</div>
+                </div>
+                <div class="tl-desc">
+                  30-minute intro call with recruiter Priya S. Discussed the role scope, team structure
+                  (Ads Frontend team), and rough compensation range (₹55–80 LPA). Positive tone —
+                  recruiter mentioned the team is growing rapidly. Sent follow-up thank-you email.
+                </div>
+                <div class="tl-tags">
+                  <span class="tl-tag green">Cleared</span>
+                  <span class="tl-tag">Recruiter: Priya S.</span>
+                </div>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="tl-item">
+              <div class="tl-dot" style="background:rgba(99,102,241,0.12);color:var(--accent);">📄</div>
+              <div class="tl-body">
+                <div class="tl-head">
+                  <div class="tl-title">Application Submitted</div>
+                  <div class="tl-time">Feb 28 · 11:42 AM</div>
+                </div>
+                <div class="tl-desc">
+                  Applied via Google Careers portal for L4 Senior Frontend Developer role in Hyderabad /
+                  Remote. Attached Resume_v3 and tailored cover letter. Referral from ex-colleague Arjun M.
+                </div>
+                <div class="tl-tags">
+                  <span class="tl-tag blue">Referral</span>
+                  <span class="tl-tag">Google Careers</span>
+                  <span class="tl-tag">Resume v3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interview Prep Checklist -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">✅</span> Interview Prep Checklist</span>
+            <span class="card-action">+ Add Task</span>
+          </div>
+          <div class="checklist">
+            <div class="check-section-title">Technical Prep</div>
+
+            <div class="check-item checked" onclick="toggleCheck(this)">
+              <div class="checkbox">✓</div>
+              <div>
+                <div class="check-label">Revise Angular Change Detection (Zone.js vs OnPush)</div>
+                <div class="check-sub">Deep dive into ChangeDetectorRef, markForCheck, detectChanges</div>
+              </div>
+              <div class="check-priority low">Done</div>
+            </div>
+            <div class="check-item checked" onclick="toggleCheck(this)">
+              <div class="checkbox">✓</div>
+              <div>
+                <div class="check-label">RxJS operators: switchMap, mergeMap, exhaustMap</div>
+                <div class="check-sub">Practice with real use-cases: HTTP cancellation, debounce</div>
+              </div>
+              <div class="check-priority low">Done</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="checkbox"></div>
+              <div>
+                <div class="check-label">System Design: Design a real-time analytics dashboard</div>
+                <div class="check-sub">Focus on component architecture, data flow, WebSocket handling</div>
+              </div>
+              <div class="check-priority high">High</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="checkbox"></div>
+              <div>
+                <div class="check-label">NgRx Store — actions, reducers, effects, selectors</div>
+                <div class="check-sub">Be ready to whiteboard a full NgRx flow from scratch</div>
+              </div>
+              <div class="check-priority high">High</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="checkbox"></div>
+              <div>
+                <div class="check-label">Performance: Lazy loading, virtual scroll, bundle optimisation</div>
+                <div class="check-sub">Know Chrome DevTools performance tab deeply</div>
+              </div>
+              <div class="check-priority med">Medium</div>
+            </div>
+
+            <div class="check-section-title">Behavioural / Soft Skills</div>
+            <div class="check-item checked" onclick="toggleCheck(this)">
+              <div class="checkbox">✓</div>
+              <div>
+                <div class="check-label">Prepare 3 STAR stories (Situation, Task, Action, Result)</div>
+                <div class="check-sub">Leadership, conflict resolution, ownership under pressure</div>
+              </div>
+              <div class="check-priority low">Done</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="checkbox"></div>
+              <div>
+                <div class="check-label">Research Google's engineering culture and Ads team work</div>
+                <div class="check-sub">Read team blogs, recent Angular contributions from Googlers</div>
+              </div>
+              <div class="check-priority med">Medium</div>
+            </div>
+
+            <div class="check-section-title">Logistics</div>
+            <div class="check-item checked" onclick="toggleCheck(this)">
+              <div class="checkbox">✓</div>
+              <div>
+                <div class="check-label">Confirm interview time and Google Meet link with recruiter</div>
+              </div>
+              <div class="check-priority low">Done</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+              <div class="checkbox"></div>
+              <div>
+                <div class="check-label">Test mic, camera, and internet connection day before</div>
+              </div>
+              <div class="check-priority low">Low</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /main-col -->
+
+      <!-- SIDE COLUMN -->
+      <div class="side-col">
+
+        <!-- Job Details -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">📋</span> Job Details</span>
+            <span class="card-action">Edit</span>
+          </div>
+          <div class="info-rows">
+            <div class="info-row">
+              <span class="info-key">🏢 Company</span>
+              <span class="info-val">{{ jobData()?.company }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">📌 Location</span>
+              <span class="info-val">{{ jobData()?.location }}</span>
+            </div>
+            <!-- <div class="info-row">
+              <span class="info-key">💼 Job Type</span>
+              <span class="info-val">Full-time · L4</span>
+            </div> -->
+            <div class="info-row">
+              <span class="info-key">💰 Salary </span>
+              <span class="info-val green">{{ jobData()?.salary | lac }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">📅 Applied</span>
+              <span class="info-val">{{ jobData()?.appliedDate | appDate }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">📅 Next Interview</span>
+              <span class="info-val yellow">{{ jobData()?.nextInterviewDate | appDate }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">⚡ Priority</span>
+              <ng-content *ngIf="jobData()?.priority === 'high'"><span class="info-val red">🔴 High</span></ng-content>
+              <ng-content *ngIf="jobData()?.priority === 'medium'"><span class="info-val yellow">🟡 Medium</span></ng-content>
+              <ng-content *ngIf="jobData()?.priority === 'low'"><span class="info-val green">🟢 Low</span></ng-content>
+            </div>
+            <div class="info-row">
+              <span class="info-key">🔗 Source</span>
+              <span class="info-val accent"><a href="{{ jobData()?.jobUrl }}" target="_blank">{{ jobData()?.source }}</a></span>
+            </div>
+            <!-- <div class="info-row">
+              <span class="info-key">👤 Referral</span>
+              <span class="info-val">Arjun M.</span>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- Quick Notes -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">📝</span> Quick Notes</span>
+            <span class="card-action">Edit</span>
+          </div>
+          <div class="notes-body">
+            <div class="notes-text">
+              Recruiter: <span class="highlight">Priya S.</span><br>
+              Team: <span class="highlight">Ads Frontend</span> (growing fast)<br><br>
+              Focus areas for technical:<br>
+              → Angular v17+ signals<br>
+              → RxJS error handling<br>
+              → NgRx effects + selectors<br>
+              → System design: dashboards<br><br>
+              <span class="link">glassdoor.com/google-reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documents -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">📎</span> Documents</span>
+            <span class="card-action">+ Upload</span>
+          </div>
+          <div class="docs-body">
+            <div class="doc-item">
+              <div class="doc-icon-wrap pdf">📄</div>
+              <div class="doc-info">
+                <div class="doc-name">Resume_v3_Google.pdf</div>
+                <div class="doc-meta">142 KB · Feb 28, 2026</div>
+              </div>
+              <div class="doc-actions">
+                <div class="doc-btn" title="Preview">👁</div>
+                <div class="doc-btn" title="Download">↓</div>
+              </div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-icon-wrap doc">📝</div>
+              <div class="doc-info">
+                <div class="doc-name">CoverLetter_Google.pdf</div>
+                <div class="doc-meta">88 KB · Feb 28, 2026</div>
+              </div>
+              <div class="doc-actions">
+                <div class="doc-btn" title="Preview">👁</div>
+                <div class="doc-btn" title="Download">↓</div>
+              </div>
+            </div>
+            <div class="upload-zone">
+              <strong>+ Drop file here</strong>
+              <p>PDF, DOCX up to 5MB</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reminders -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">🔔</span> Reminders</span>
+            <span class="card-action">+ Add</span>
+          </div>
+          <div class="reminders-body">
+            <div class="reminder-item">
+              <div class="rem-date">
+                <div class="rem-month">MAR</div>
+                <div class="rem-day">11</div>
+              </div>
+              <div class="rem-info">
+                <div class="rem-title">Prep session</div>
+                <div class="rem-sub">Day before interview</div>
+              </div>
+              <button class="rem-del">✕</button>
+            </div>
+            <div class="reminder-item">
+              <div class="rem-date">
+                <div class="rem-month">MAR</div>
+                <div class="rem-day">12</div>
+              </div>
+              <div class="rem-info">
+                <div class="rem-title">Technical Interview</div>
+                <div class="rem-sub">10:00 AM · Google Meet</div>
+              </div>
+              <button class="rem-del">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Required -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title"><span class="card-title-icon">⚡</span> Required Skills</span>
+          </div>
+          <div class="tags-body">
+            <span class="skill-tag">Angular 17</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">RxJS</span>
+            <span class="skill-tag">NgRx</span>
+            <span class="skill-tag">HTML/SCSS</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">Performance</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Agile</span>
+          </div>
+        </div>
+
+      </div><!-- /side-col -->
+    </div>
+
+    <!-- STATUS FOOTER -->
+    <div class="status-footer">
+      <div class="status-items">
+        <div class="status-item">
+          <div class="status-indicator"></div>
+          <span class="status-label">Current Stage:</span>
+          <span class="status-val yellow">Technical Interview (Round 3)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Days in Pipeline:</span>
+          <span class="status-val">11 days</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Prep Checklist:</span>
+          <span class="status-val green">4 / 9 complete</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Last Activity:</span>
+          <span class="status-val">Today, 9:42 AM</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-danger">🗑 Archive</button>
+        <button class="btn btn-success" onclick="openModal()">✓ Got Offer</button>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+<!-- Job Modal -->
+<app-job-modal [isOpen]="isModalOpen()" (modalClose)="closeModal()"></app-job-modal>
