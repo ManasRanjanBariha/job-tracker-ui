@@ -6,26 +6,49 @@
 -(done)Make the number update on the footer of sidebar (done)
 -(done)in sidebar make navigate to the kanban board (done)
 -(done)fix the response Rate that api is pulling more details than the dashboard ()
+-(done)Toaster service
 
-
--Goal module
-
--Job detail page
--Quick actions
--application details 
+-(done)Job detail page
+-(done)application details 
     -Add (done)
-    -Update (inprogress)
-    -delete
+    -Update (done)
+    -delete (later in improvements)
     -display(done)
     -update the topbar to hold the edit button for the application(done)
     -navigation to from every page to go the application (done)
--Toaster service
+
+-Dashboard Thing
+    -Goal module
+    -Quick actions
+
+
 -Reminders
 -Activtity timeline
     -display
     -Add
     -remove
     -update
+-delete application details 
+-Kanban board Drag & Drop
+    . Drag-and-drop application stages
+    • Columns like Applied, OA, Interview, Offer, Rejected
+    • Smooth animations using Angular CDK
+    • Priority indicators and company logos
+    • Makes the application feel modern and professional
+
+-Analytics Dashboard
+    • Applications per month
+    • Response rate and offer rate
+    • Most successful job platforms
+    • Charts using ApexCharts or Chart.js
+    • Transforms the app into a career insights platform
+-Chrome Extension for Saving Jobs
+    • Save jobs directly from LinkedIn or Naukri
+    • Auto-fill company and role details
+    • Capture job links and descriptions
+    • One-click job tracking workflow
+    • Shows strong integration engineering skills
+
 
 
 
@@ -38,7 +61,9 @@
 
 backend
 -(done)update the job table and saving and everything
--activity timeline 
+-(done)activity timeline
+-update dashbard api to display correct information
+ 
 
 
 

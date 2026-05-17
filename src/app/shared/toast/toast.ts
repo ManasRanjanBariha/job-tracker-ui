@@ -5,18 +5,18 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-toast',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './toast.html',
   styleUrl: './toast.scss',
 })
 export class Toast {
+  toastService = inject(ToastService);
+  toasts = this.toastService.toasts;
 
   trackById(index: number, toast: ToastModel) {
     return toast.id;
   }
-
-  toastService = inject(ToastService);
-  toasts = this.toastService.toasts;
 
   remove(id: number) {
     this.toastService.removeToast(id);

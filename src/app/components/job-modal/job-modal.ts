@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApplicationService } from '../../service/application/application-service';
+import { ToastService } from '../../service/toast/toast-service';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -15,6 +16,7 @@ export class JobModal {
   @Output() applicationSaved = new EventEmitter<any>();
 
   applicationService = inject(ApplicationService);
+  toastService = inject(ToastService);
 
   @Input() applicationData = {
     company: '',
@@ -48,7 +50,7 @@ export class JobModal {
   saveApplication() {
     // Validate required fields
     if (!this.applicationData.company || !this.applicationData.role) {
-      alert('Please fill in Company Name and Job Title');
+      this.toastService.error('Please fill in Company Name and Job Title');
       return;
     }
 
@@ -58,13 +60,13 @@ export class JobModal {
       this.applicationService.updateApplication(id, this.applicationData).subscribe({
         next: (response:any) => {
           console.log('Application updated successfully:', response);
+          this.toastService.success(`${this.applicationData.company} application updated! 🎉`);
           this.applicationSaved.emit(response);
-          // this.resetForm();
           this.closeModal();
         },
         error: (error:any ) => {
           console.error('Error updating application:', error);
-          alert('Failed to update application. Please try again.');
+          this.toastService.error('Failed to update application. Please try again.');
         }
       });
     } else {
@@ -72,13 +74,14 @@ export class JobModal {
       this.applicationService.createApplication(this.applicationData).subscribe({
         next: (response) => {
           console.log('Application saved successfully:', response);
+          this.toastService.success(`${this.applicationData.company} added to your tracker! 🚀`);
           this.applicationSaved.emit(response);
           this.resetForm();
           this.closeModal();
         },
         error: (error) => {
           console.error('Error saving application:', error);
-          alert('Failed to save application. Please try again.');
+          this.toastService.error('Failed to save application. Please try again.');
         }
       });
     }
